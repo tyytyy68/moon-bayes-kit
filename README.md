@@ -14,7 +14,7 @@ MoonBit Composable Bayesian Online Update Library.
 ```mbt check
 test {
   // Create a Beta-Binomial model with prior alpha=1.0, beta=1.0 (Uniform prior)
-  let prior = @moon_bayes_kit.BetaBinomial::new(1.0, 1.0)
+  let prior = BetaBinomial::new(1.0, 1.0)
   
   // Update with 7 successes out of 10 trials
   let posterior = prior.update(7, 10)
@@ -27,7 +27,7 @@ test {
 ```mbt check
 test {
   // Gamma-Poisson model example
-  let prior = @moon_bayes_kit.GammaPoisson::new(2.0, 1.0)
+  let prior = GammaPoisson::new(2.0, 1.0)
   let posterior = prior.update(3, 2)
   inspect(posterior.posterior_mean(), content="1.6666666666666667")
 }

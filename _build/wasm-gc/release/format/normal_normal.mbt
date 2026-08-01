@@ -74,12 +74,3 @@ pub fn NormalNormal::posterior_predictive_variance(
 ) -> Double {
   self.prior_variance + self.data_variance
 }
-
-///|
-/// Returns an exact 95% credible interval (lower, upper).
-pub fn NormalNormal::credible_interval_95(self : NormalNormal) -> (Double, Double) {
-  let mean = self.posterior_mean()
-  let std = self.posterior_variance().sqrt()
-  let margin = 1.96 * std
-  (mean - margin, mean + margin)
-}

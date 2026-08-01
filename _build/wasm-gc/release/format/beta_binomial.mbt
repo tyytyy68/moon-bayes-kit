@@ -67,20 +67,3 @@ pub fn BetaBinomial::posterior_predictive_variance(
   let mean = self.alpha / sum
   n * mean * (1.0 - mean) * (sum + n) / (sum + 1.0)
 }
-
-///|
-/// Returns a Normal-approximation 95% credible interval (lower, upper).
-pub fn BetaBinomial::credible_interval_95(self : BetaBinomial) -> (Double, Double) {
-  let mean = self.posterior_mean()
-  let std = self.posterior_variance().sqrt()
-  let margin = 1.96 * std
-  let mut lower = mean - margin
-  if lower < 0.0 {
-    lower = 0.0
-  }
-  let mut upper = mean + margin
-  if upper > 1.0 {
-    upper = 1.0
-  }
-  (lower, upper)
-}
