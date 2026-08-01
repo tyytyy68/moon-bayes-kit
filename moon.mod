@@ -1,0 +1,10 @@
+name = "qjgqjg/moon-bayes-kit"
+version = "0.1.0"
+readme = "README.md"
+license = "Apache-2.0"
+description = "MoonBit Composable Bayesian Online Update Library"
+repository = "https://github.com/qjgqjg/moon-bayes-kit"
+
+options(
+  "preferred-target": "native",
+)
