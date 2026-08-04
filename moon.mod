@@ -1,4 +1,4 @@
-name = "qjgqjg/moon-bayes-kit"
+name = "tyytyy68/moon-bayes-kit"
 
 version = "0.1.0"
 
@@ -8,4 +8,4 @@ license = "Apache-2.0"
 
 description = "MoonBit Composable Bayesian Online Update Library"
 
-repository = "https://github.com/qjgqjg/moon-bayes-kit"
+repository = "https://github.com/tyytyy68/moon-bayes-kit"
