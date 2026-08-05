@@ -7,7 +7,30 @@ MoonBit Composable Bayesian Online Update Library.
 - **Beta-Binomial Conjugate Model**: Prior update and posterior predictions for binomial data.
 - **Gamma-Poisson Conjugate Model**: Inference on count data.
 - **Normal-Normal Conjugate Model**: Continuous data with known variance.
+- **Dirichlet-Multinomial Conjugate Model**: Categorical data with any number of categories.
 - **Serialization**: `ToJson` support for model persistence.
+
+## Extensible online updates
+
+Every model is immutable: `update` returns a new posterior, so updates can be
+composed, replayed, or persisted without hidden state. The categorical model
+accepts an arbitrary number of categories and supports both batch counts and
+one-observation-at-a-time updates.
+
+```mbt check
+///|
+test {
+  let model = DirichletMultinomial::new([1.0, 1.0, 1.0])
+  let posterior = model.update([3, 1, 0])
+  debug_inspect(
+    posterior.posterior_mean(),
+    content=(
+      #|[0.5714285714285714, 0.2857142857142857, 0.14285714285714285]
+
+    ),
+  )
+}
+```
 
 ## Example
 

@@ -52,6 +52,11 @@ pub fn BetaBinomial::posterior_predictive_mean(
   self : BetaBinomial,
   new_trials : Int,
 ) -> Double {
+  if new_trials < 0 {
+    abort(
+      "BetaBinomial::posterior_predictive_mean: new_trials must be non-negative",
+    )
+  }
   let n = new_trials.to_double()
   n * self.alpha / (self.alpha + self.beta)
 }
@@ -62,6 +67,11 @@ pub fn BetaBinomial::posterior_predictive_variance(
   self : BetaBinomial,
   new_trials : Int,
 ) -> Double {
+  if new_trials < 0 {
+    abort(
+      "BetaBinomial::posterior_predictive_variance: new_trials must be non-negative",
+    )
+  }
   let n = new_trials.to_double()
   let sum = self.alpha + self.beta
   let mean = self.alpha / sum
