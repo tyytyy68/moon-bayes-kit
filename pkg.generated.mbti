@@ -65,6 +65,12 @@ pub fn gini_impurity(Array[Double]) -> Double
 
 pub fn histogram(Array[Double], Double, Double, Int) -> Array[Int]
 
+pub fn impute_mean(Array[Double], (Double) -> Bool) -> Array[Double]
+
+pub fn impute_median(Array[Double], (Double) -> Bool) -> Array[Double]
+
+pub fn interaction_matrix(Array[Double], Array[Double]) -> DenseMatrix
+
 pub fn interquartile_range(Array[Double]) -> Double
 
 pub fn log_loss(Array[Double], Array[Bool], epsilon? : Double) -> Double
@@ -87,7 +93,13 @@ pub fn normal_summary(Double, Double) -> DistributionSummary
 
 pub fn normalize_probabilities(Array[Double]) -> Array[Double]
 
+pub fn one_hot(Int, Int) -> Array[Double]
+
+pub fn one_hot_all(Array[Int], Int) -> Array[Array[Double]]
+
 pub fn outer_product(Array[Double], Array[Double]) -> DenseMatrix
+
+pub fn pairwise_products(Array[Double]) -> Array[Double]
 
 pub fn percentile_rank(Array[Double], Double) -> Double
 
@@ -95,9 +107,13 @@ pub fn permutation_difference(DeterministicRng, Array[Double], Array[Double], In
 
 pub fn poisson_summary(Double) -> DistributionSummary
 
+pub fn polynomial_features(Array[Double], Int) -> Array[Double]
+
 pub fn quantile(Array[Double], Double) -> Double
 
 pub fn rank_descending(Array[Double]) -> Array[Int]
+
+pub fn rank_features(Array[Array[Double]]) -> Array[Int]
 
 pub fn rank_models(Array[ModelScore]) -> Array[Int]
 
@@ -132,6 +148,8 @@ pub fn walk_forward_folds(Int, Int) -> Array[SplitResult]
 pub fn weighted_choice(DeterministicRng, Array[Double]) -> (DeterministicRng, Int)
 
 pub fn weighted_mean(Array[Double], Array[Double]) -> Double
+
+pub fn winsorize(Array[Double], Double, Double) -> Array[Double]
 
 // Errors
 
@@ -479,6 +497,48 @@ pub struct ExperimentPoint {
 pub fn ExperimentPoint::error(Self) -> Double
 pub fn ExperimentPoint::metric(Self) -> Double
 pub fn ExperimentPoint::step(Self) -> Int
+
+pub struct FeatureColumn {
+  name : String
+  transform : FeatureTransform
+  values : Array[Double]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn FeatureColumn::clip(Self, Double, Double) -> Self
+pub fn FeatureColumn::fill(Self, Double, (Double) -> Bool) -> Self
+pub fn FeatureColumn::fit_minmax(Self) -> Self
+pub fn FeatureColumn::fit_zscore(Self) -> Self
+pub fn FeatureColumn::missing_count(Self, (Double) -> Bool) -> Int
+pub fn FeatureColumn::name(Self) -> String
+pub fn FeatureColumn::new(String, Array[Double]) -> Self
+pub fn FeatureColumn::raw_values(Self) -> Array[Double]
+pub fn FeatureColumn::threshold(Self, Double) -> Self
+pub fn FeatureColumn::values(Self) -> Array[Double]
+
+pub struct FeaturePipeline {
+  columns : Array[FeatureColumn]
+  fitted : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn FeaturePipeline::column_count(Self) -> Int
+pub fn FeaturePipeline::columns(Self) -> Array[FeatureColumn]
+pub fn FeaturePipeline::describe(Self) -> Array[OnlineStats]
+pub fn FeaturePipeline::drop(Self, String) -> Self
+pub fn FeaturePipeline::fit_minmax(Self) -> Self
+pub fn FeaturePipeline::fit_zscore(Self) -> Self
+pub fn FeaturePipeline::new(Array[FeatureColumn]) -> Self
+pub fn FeaturePipeline::transform(Self) -> Dataset
+pub fn FeaturePipeline::transform_row(Self, Array[Double]) -> Array[Double]
+pub fn FeaturePipeline::with_column(Self, FeatureColumn) -> Self
+
+pub enum FeatureTransform {
+  Identity
+  MinMax(lower~ : Double, upper~ : Double)
+  ZScore(center~ : Double, scale~ : Double)
+  Clip(lower~ : Double, upper~ : Double)
+  Threshold(cutoff~ : Double)
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn FeatureTransform::apply(Self, Double) -> Double
+pub fn FeatureTransform::apply_all(Self, Array[Double]) -> Array[Double]
+pub fn FeatureTransform::inverse(Self, Double) -> Double
 
 pub struct ForecastPoint {
   step : Int
