@@ -1,14 +1,35 @@
 # moon-bayes-kit
 
-MoonBit Composable Bayesian Online Update Library.
+`moon-bayes-kit` is a dependency-light MoonBit library for immutable Bayesian
+updates, online statistics, predictive checks, and small-model forecasting.
+It is being completed for the August 2026 MoonBit Hackathon. The implementation
+is original MoonBit code; it is not a port of a third-party project.
 
-## Features
+## What is included
 
-- **Beta-Binomial Conjugate Model**: Prior update and posterior predictions for binomial data.
-- **Gamma-Poisson Conjugate Model**: Inference on count data.
-- **Normal-Normal Conjugate Model**: Continuous data with known variance.
-- **Dirichlet-Multinomial Conjugate Model**: Categorical data with any number of categories.
-- **Serialization**: `ToJson` support for model persistence.
+- Beta-Binomial, Gamma-Poisson, Normal-Normal, and Dirichlet-Multinomial models;
+- predictive probability tables, quantiles, credible intervals, and posterior summaries;
+- immutable `UpdateLedger` replaying heterogeneous observations;
+- Welford online moments, mergeable summaries, rolling windows, EWMA and CUSUM drift detection;
+- dense matrix operations and Bayesian linear regression with sufficient-statistic updates;
+- binary classification, calibration, Brier/log loss, MAE/RMSE, and regression reports;
+- deterministic chronological and walk-forward validation helpers;
+- reproducible Beta-bandit policy and largest-remainder categorical allocation;
+- JSON persistence through MoonBit `ToJson` / `FromJson` derivation.
+
+Every update returns a new value, making event replay, checkpointing, edge-device
+inference, and deterministic tests straightforward.
+
+## Quick start
+
+```mbt check
+///|
+test {
+  let prior = BetaBinomial::new(1.0, 1.0)
+  let posterior = prior.update(7, 10)
+  inspect(posterior.posterior_mean(), content="0.6666666666666666")
+}
+```
 
 ## Extensible online updates
 
@@ -32,7 +53,35 @@ test {
 }
 ```
 
-## Example
+## Validation and benchmark
+
+```text
+moon fmt --check
+moon check --target all --deny-warn
+moon test --target all --deny-warn
+moon info --deny-warn
+moon run --target native cmd/benchmark
+```
+
+The committed benchmark performs 10,000 online updates across the conjugate
+models and Welford statistics. On the development machine used for this release
+(MoonBit 0.1.20260807 / moonc 0.10.7), the native release workload completed in
+0.258 s wall time for the end-to-end native debug command using PowerShell
+`Measure-Command` averaged over five runs after one warm-up. Timing varies by
+machine; the command above reproduces the calculation and output.
+
+## License and provenance
+
+Apache-2.0. This is an original MoonBit implementation with no copied source,
+generated third-party code, or external fixture data.
+
+## Package metadata
+
+- MoonBit module: `tyytyy68/moon-bayes-kit`
+- GitHub: https://github.com/tyytyy68/moon-bayes-kit
+- GitLink: https://gitlink.org.cn/tyytyy68/moon-bayes-kit
+
+## Examples
 
 ```mbt check
 ///|

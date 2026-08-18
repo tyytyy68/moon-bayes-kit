@@ -1,0 +1,5 @@
+import {
+  "tyytyy68/moon-bayes-kit" @kit,
+}
+
+pkgtype(kind: "executable")

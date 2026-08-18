@@ -1,4 +1,4 @@
-name: check & test
+name: MoonBit check, test, and verify
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  verify:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
@@ -17,23 +17,34 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: install
-        uses: moonbitlang/setup-moonbit@v1
-        with:
-          moonbit-version: 0.10.3
-
-      - name: moon check
+      - name: Install latest stable MoonBit (Unix)
+        if: runner.os != 'Windows'
+        shell: bash
         run: |
-          moon check
-
-      - name: moon test
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Install latest stable MoonBit (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
         run: |
-          moon test
-
-      - name: moon fmt --deny-warn
+          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+          irm https://cli.moonbitlang.com/install/powershell.ps1 | iex
+          "C:\Users\runneradmin\.moon\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+      - name: Show toolchain and update dependencies
         run: |
-          moon fmt --deny-warn
+          moon version --all
+          moon update
 
-      - name: moon info --deny-warn
+      - name: Check all backends and deny warnings
+        run: moon check --target all --deny-warn
+
+      - name: Test all backends and deny warnings
+        run: moon test --target all --deny-warn
+
+      - name: Format check
+        run: moon fmt --check
+
+      - name: Public API is generated and stable
         run: |
-          moon info --deny-warn
+          moon info
+          git diff --exit-code -- pkg.generated.mbti

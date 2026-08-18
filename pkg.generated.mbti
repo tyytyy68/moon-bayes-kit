@@ -7,42 +7,330 @@ import {
 }
 
 // Values
+pub fn bernoulli_summary(Double) -> DistributionSummary
+
+pub fn bootstrap_indices(DeterministicRng, Int, Int) -> (DeterministicRng, Array[Int])
+
+pub fn brier_score(Array[Double], Array[Bool]) -> Double
+
+pub fn calibration_error(Array[Double], Array[Bool], Int) -> Double
+
+pub fn categorical_summary(Array[Double]) -> Array[DistributionSummary]
+
+pub fn cholesky(DenseMatrix) -> DenseMatrix
+
+pub fn chronological_split(Int, Double) -> SplitResult
+
+pub fn clamp(Double, Double, Double) -> Double
+
+pub fn covariance(Array[Double], Array[Double]) -> Double
+
+pub fn detect_step(Array[Double], Double, Double) -> Int?
+
+pub fn dot(Array[Double], Array[Double]) -> Double
+
+pub fn drift_forecast(Array[Double], Int) -> Array[ForecastPoint]
+
+pub fn entropy_bernoulli(Double) -> Double
+
+pub fn exponential_moving_average(Array[Double], Double) -> Array[Double]
+
+pub fn exponentially_weighted_variance(Array[Double], Double) -> Array[Double]
+
+pub fn forecast_values(Array[ForecastPoint]) -> Array[Double]
+
+pub fn gini_impurity(Array[Double]) -> Double
+
+pub fn log_loss(Array[Double], Array[Bool], epsilon? : Double) -> Double
+
+pub fn mean(Array[Double]) -> Double
+
+pub fn mean_absolute_error(Array[Double], Array[Double]) -> Double
+
+pub fn naive_forecast(Array[Double], Int) -> Array[ForecastPoint]
+
+pub fn normal_summary(Double, Double) -> DistributionSummary
+
+pub fn normalize_probabilities(Array[Double]) -> Array[Double]
+
+pub fn poisson_summary(Double) -> DistributionSummary
+
+pub fn quantile(Array[Double], Double) -> Double
+
+pub fn rank_descending(Array[Double]) -> Array[Int]
+
+pub fn rolling_z_scores(Array[Double], Int) -> Array[Double]
+
+pub fn root_mean_squared_error(Array[Double], Array[Double]) -> Double
+
+pub fn seasonal_naive(Array[Double], Int, Int) -> Array[ForecastPoint]
+
+pub fn shuffle(DeterministicRng, Array[Int]) -> (DeterministicRng, Array[Int])
+
+pub fn solve_lower(DenseMatrix, Array[Double]) -> Array[Double]
+
+pub fn solve_upper(DenseMatrix, Array[Double]) -> Array[Double]
+
+pub fn sum(Array[Double]) -> Double
+
+pub fn uniform_grid(Double, Double, Int) -> Array[Double]
+
+pub fn variance(Array[Double]) -> Double
+
+pub fn walk_forward_folds(Int, Int) -> Array[SplitResult]
+
+pub fn weighted_choice(DeterministicRng, Array[Double]) -> (DeterministicRng, Int)
+
+pub fn weighted_mean(Array[Double], Array[Double]) -> Double
 
 // Errors
 
 // Types and methods
+pub struct BanditPolicy {
+  arms : Array[BetaArm]
+  rounds : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn BanditPolicy::arms(Self) -> Array[BetaArm]
+pub fn BanditPolicy::best_arm(Self) -> Int
+pub fn BanditPolicy::new(Array[BetaArm]) -> Self
+pub fn BanditPolicy::observe(Self, Int, Bool) -> Self
+pub fn BanditPolicy::recommendation(Self) -> String
+pub fn BanditPolicy::rounds(Self) -> Int
+pub fn BanditPolicy::select_upper_confidence(Self, Double) -> Int
+
+pub struct BayesianLinearRegression {
+  prior_mean : Array[Double]
+  prior_precision : DenseMatrix
+  precision : DenseMatrix
+  information : Array[Double]
+  noise_variance : Double
+  observations : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn BayesianLinearRegression::add_observation(Self, Array[Double], Double) -> Self
+pub fn BayesianLinearRegression::feature_count(Self) -> Int
+pub fn BayesianLinearRegression::fit(Self, Array[Array[Double]], Array[Double]) -> Self
+pub fn BayesianLinearRegression::new(Array[Double], Double, Double) -> Self
+pub fn BayesianLinearRegression::observations(Self) -> Int
+pub fn BayesianLinearRegression::posterior_covariance(Self) -> DenseMatrix
+pub fn BayesianLinearRegression::posterior_mean(Self) -> Array[Double]
+pub fn BayesianLinearRegression::posterior_precision(Self) -> DenseMatrix
+pub fn BayesianLinearRegression::predict(Self, Array[Double]) -> Double
+pub fn BayesianLinearRegression::predict_summary(Self, Array[Double]) -> PredictiveSummary
+pub fn BayesianLinearRegression::predict_variance(Self, Array[Double]) -> Double
+pub fn BayesianLinearRegression::r_squared(Self, Array[Array[Double]], Array[Double]) -> Double
+pub fn BayesianLinearRegression::residuals(Self, Array[Array[Double]], Array[Double]) -> Array[Double]
+
+pub struct BetaArm {
+  name : String
+  posterior : BetaBinomial
+  pulls : Int
+  reward_sum : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn BetaArm::empirical_rate(Self) -> Double
+pub fn BetaArm::name(Self) -> String
+pub fn BetaArm::new(String, Double, Double) -> Self
+pub fn BetaArm::observe(Self, Bool) -> Self
+pub fn BetaArm::optimistic_score(Self, Double) -> Double
+pub fn BetaArm::posterior(Self) -> BetaBinomial
+pub fn BetaArm::pulls(Self) -> Int
+pub fn BetaArm::reward_sum(Self) -> Int
+
 pub(all) struct BetaBinomial {
   alpha : Double
   beta : Double
 } derive(Eq, ToJson, @debug.Debug, @json.FromJson)
 pub fn BetaBinomial::credible_interval_95(Self) -> (Double, Double)
+pub fn BetaBinomial::effective_sample_size(Self) -> Double
 pub fn BetaBinomial::new(Double, Double) -> Self
 pub fn BetaBinomial::posterior_mean(Self) -> Double
+pub fn BetaBinomial::posterior_mode(Self) -> Double
 pub fn BetaBinomial::posterior_predictive_mean(Self, Int) -> Double
+pub fn BetaBinomial::posterior_predictive_summary(Self, Int) -> PredictiveSummary
 pub fn BetaBinomial::posterior_predictive_variance(Self, Int) -> Double
 pub fn BetaBinomial::posterior_variance(Self) -> Double
+pub fn BetaBinomial::predictive_distribution(Self, Int) -> Array[Double]
+pub fn BetaBinomial::predictive_probability(Self, Int, Int) -> Double
+pub fn BetaBinomial::predictive_quantile(Self, Int, Double) -> Int
+pub fn BetaBinomial::prior_strength(Self) -> Double
+pub fn BetaBinomial::summary(Self) -> DistributionSummary
 pub fn BetaBinomial::update(Self, Int, Int) -> Self
+
+pub struct BinaryBatch {
+  successes : Int
+  trials : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn BinaryBatch::combine(Self, Self) -> Self
+pub fn BinaryBatch::new(Int, Int) -> Self
+pub fn BinaryBatch::success_rate(Self) -> Double
+
+pub struct CalibrationBin {
+  lower : Double
+  upper : Double
+  count : Int
+  predicted_sum : Double
+  observed_sum : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn CalibrationBin::add(Self, Double, Bool) -> Self
+pub fn CalibrationBin::count(Self) -> Int
+pub fn CalibrationBin::gap(Self) -> Double
+pub fn CalibrationBin::new(Double, Double) -> Self
+pub fn CalibrationBin::observed_rate(Self) -> Double
+pub fn CalibrationBin::predicted_mean(Self) -> Double
+
+pub struct ConfusionMatrix {
+  true_positive : Int
+  true_negative : Int
+  false_positive : Int
+  false_negative : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ConfusionMatrix::accuracy(Self) -> Double
+pub fn ConfusionMatrix::add(Self, Bool, Bool) -> Self
+pub fn ConfusionMatrix::add_all(Self, Array[Bool], Array[Bool]) -> Self
+pub fn ConfusionMatrix::f1(Self) -> Double
+pub fn ConfusionMatrix::new() -> Self
+pub fn ConfusionMatrix::precision(Self) -> Double
+pub fn ConfusionMatrix::recall(Self) -> Double
+pub fn ConfusionMatrix::total(Self) -> Int
+
+pub struct CountBatch {
+  total : Int
+  observations : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn CountBatch::combine(Self, Self) -> Self
+pub fn CountBatch::new(Int, Int) -> Self
+pub fn CountBatch::rate(Self) -> Double
+
+pub struct CusumDetector {
+  target : Double
+  allowance : Double
+  threshold : Double
+  positive : Double
+  negative : Double
+  updates : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn CusumDetector::direction(Self) -> Int
+pub fn CusumDetector::is_drift(Self) -> Bool
+pub fn CusumDetector::negative_score(Self) -> Double
+pub fn CusumDetector::new(Double, Double, Double) -> Self
+pub fn CusumDetector::positive_score(Self) -> Double
+pub fn CusumDetector::reset(Self) -> Self
+pub fn CusumDetector::update(Self, Double) -> Self
+
+pub struct DenseMatrix {
+  rows : Int
+  columns : Int
+  values : Array[Double]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn DenseMatrix::add(Self, Self) -> Self
+pub fn DenseMatrix::at(Self, Int, Int) -> Double
+pub fn DenseMatrix::column(Self, Int) -> Array[Double]
+pub fn DenseMatrix::columns(Self) -> Int
+pub fn DenseMatrix::from_rows(Array[Array[Double]]) -> Self
+pub fn DenseMatrix::identity(Int) -> Self
+pub fn DenseMatrix::is_symmetric(Self, tolerance? : Double) -> Bool
+pub fn DenseMatrix::matmul(Self, Self) -> Self
+pub fn DenseMatrix::matvec(Self, Array[Double]) -> Array[Double]
+pub fn DenseMatrix::new(Int, Int, Array[Double]) -> Self
+pub fn DenseMatrix::row(Self, Int) -> Array[Double]
+pub fn DenseMatrix::rows(Self) -> Int
+pub fn DenseMatrix::scale(Self, Double) -> Self
+pub fn DenseMatrix::set(Self, Int, Int, Double) -> Self
+pub fn DenseMatrix::subtract(Self, Self) -> Self
+pub fn DenseMatrix::trace(Self) -> Double
+pub fn DenseMatrix::transpose(Self) -> Self
+pub fn DenseMatrix::zeros(Int, Int) -> Self
+
+pub struct DeterministicRng {
+  state : UInt64
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn DeterministicRng::int(Self, Int) -> (Self, Int)
+pub fn DeterministicRng::new(UInt64) -> Self
+pub fn DeterministicRng::next(Self) -> (Self, UInt64)
+pub fn DeterministicRng::uniform(Self) -> (Self, Double)
 
 pub struct DirichletMultinomial {
   alpha : Array[Double]
 } derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn DirichletMultinomial::category_count(Self) -> Int
+pub fn DirichletMultinomial::entropy(Self) -> Double
 pub fn DirichletMultinomial::new(Array[Double]) -> Self
 pub fn DirichletMultinomial::posterior_mean(Self) -> Array[Double]
+pub fn DirichletMultinomial::posterior_mode(Self) -> Array[Double]
 pub fn DirichletMultinomial::posterior_predictive_mean(Self, Int) -> Array[Double]
+pub fn DirichletMultinomial::posterior_predictive_summary(Self, Int) -> Array[PredictiveSummary]
 pub fn DirichletMultinomial::posterior_variance(Self) -> Array[Double]
+pub fn DirichletMultinomial::predictive_distribution(Self) -> Array[Double]
+pub fn DirichletMultinomial::predictive_probability(Self, Int) -> Double
+pub fn DirichletMultinomial::sample_without_randomness(Self, Int) -> Array[Int]
+pub fn DirichletMultinomial::summary(Self) -> Array[DistributionSummary]
+pub fn DirichletMultinomial::total_concentration(Self) -> Double
 pub fn DirichletMultinomial::update(Self, Array[Int]) -> Self
 pub fn DirichletMultinomial::update_one(Self, Int) -> Self
+
+pub enum DistributionKind {
+  Bernoulli
+  Count
+  Continuous
+  Categorical
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct DistributionSummary {
+  kind : DistributionKind
+  mean : Double
+  variance : Double
+  support_lower : Double
+  support_upper : Double?
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn DistributionSummary::kind(Self) -> DistributionKind
+pub fn DistributionSummary::mean(Self) -> Double
+pub fn DistributionSummary::new(DistributionKind, Double, Double, Double, Double?) -> Self
+pub fn DistributionSummary::standard_deviation(Self) -> Double
+pub fn DistributionSummary::support_lower(Self) -> Double
+pub fn DistributionSummary::support_upper(Self) -> Double?
+pub fn DistributionSummary::variance(Self) -> Double
+
+pub struct EwmaDetector {
+  decay : Double
+  threshold : Double
+  level : Double
+  initialized : Bool
+  updates : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn EwmaDetector::deviation(Self, Double) -> Double
+pub fn EwmaDetector::is_drift(Self, Double) -> Bool
+pub fn EwmaDetector::level(Self) -> Double
+pub fn EwmaDetector::new(Double, Double) -> Self
+pub fn EwmaDetector::reset(Self) -> Self
+pub fn EwmaDetector::update(Self, Double) -> Self
+pub fn EwmaDetector::updates(Self) -> Int
+
+pub struct ForecastPoint {
+  step : Int
+  value : Double
+  lower : Double
+  upper : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ForecastPoint::interval(Self) -> (Double, Double)
+pub fn ForecastPoint::step(Self) -> Int
+pub fn ForecastPoint::value(Self) -> Double
 
 pub(all) struct GammaPoisson {
   shape : Double
   rate : Double
 } derive(Eq, ToJson, @debug.Debug, @json.FromJson)
 pub fn GammaPoisson::credible_interval_95(Self) -> (Double, Double)
+pub fn GammaPoisson::effective_exposure(Self) -> Double
 pub fn GammaPoisson::new(Double, Double) -> Self
 pub fn GammaPoisson::posterior_mean(Self) -> Double
+pub fn GammaPoisson::posterior_mode(Self) -> Double
 pub fn GammaPoisson::posterior_predictive_mean(Self) -> Double
+pub fn GammaPoisson::posterior_predictive_summary(Self) -> PredictiveSummary
 pub fn GammaPoisson::posterior_predictive_variance(Self) -> Double
 pub fn GammaPoisson::posterior_variance(Self) -> Double
+pub fn GammaPoisson::predictive_cdf(Self, Int) -> Double
+pub fn GammaPoisson::predictive_distribution(Self, Int) -> Array[Double]
+pub fn GammaPoisson::predictive_probability(Self, Int) -> Double
+pub fn GammaPoisson::summary(Self) -> DistributionSummary
 pub fn GammaPoisson::update(Self, Int, Int) -> Self
 
 pub(all) struct NormalNormal {
@@ -51,14 +339,118 @@ pub(all) struct NormalNormal {
   data_variance : Double
 } derive(Eq, ToJson, @debug.Debug, @json.FromJson)
 pub fn NormalNormal::credible_interval_95(Self) -> (Double, Double)
+pub fn NormalNormal::information_weight(Self) -> Double
+pub fn NormalNormal::interval_probability_approx(Self, Double, Double) -> Double
 pub fn NormalNormal::new(Double, Double, Double) -> Self
 pub fn NormalNormal::posterior_mean(Self) -> Double
 pub fn NormalNormal::posterior_predictive_mean(Self) -> Double
+pub fn NormalNormal::posterior_predictive_summary(Self) -> PredictiveSummary
 pub fn NormalNormal::posterior_predictive_variance(Self) -> Double
 pub fn NormalNormal::posterior_variance(Self) -> Double
+pub fn NormalNormal::precision(Self) -> Double
+pub fn NormalNormal::standardized(Self, Double) -> Double
+pub fn NormalNormal::summary(Self) -> DistributionSummary
 pub fn NormalNormal::update(Self, Double, Int) -> Self
+
+pub(all) enum Observation {
+  Binary(successes~ : Int, trials~ : Int)
+  Counts(sum~ : Int, observations~ : Int)
+  Continuous(mean~ : Double, observations~ : Int)
+  Categorical(index~ : Int)
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct OnlineStats {
+  count : Int
+  mean : Double
+  m2 : Double
+  minimum : Double
+  maximum : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn OnlineStats::count(Self) -> Int
+pub fn OnlineStats::max(Self) -> Double
+pub fn OnlineStats::mean(Self) -> Double
+pub fn OnlineStats::merge(Self, Self) -> Self
+pub fn OnlineStats::min(Self) -> Double
+pub fn OnlineStats::new() -> Self
+pub fn OnlineStats::population_variance(Self) -> Double
+pub fn OnlineStats::push(Self, Double) -> Self
+pub fn OnlineStats::push_all(Self, Array[Double]) -> Self
+pub fn OnlineStats::standard_deviation(Self) -> Double
+pub fn OnlineStats::sum(Self) -> Double
+pub fn OnlineStats::variance(Self) -> Double
+
+pub struct PredictiveSummary {
+  mean : Double
+  variance : Double
+  lower_95 : Double
+  upper_95 : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn PredictiveSummary::credible_interval(Self) -> (Double, Double)
+pub fn PredictiveSummary::mean(Self) -> Double
+pub fn PredictiveSummary::new(Double, Double, Double, Double) -> Self
+pub fn PredictiveSummary::standard_deviation(Self) -> Double
+pub fn PredictiveSummary::variance(Self) -> Double
+
+pub struct RegressionReport {
+  count : Int
+  mae : Double
+  rmse : Double
+  mean_actual : Double
+  mean_prediction : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn RegressionReport::bias(Self) -> Double
+pub fn RegressionReport::count(Self) -> Int
+pub fn RegressionReport::from_predictions(Array[Double], Array[Double]) -> Self
+pub fn RegressionReport::mae(Self) -> Double
+pub fn RegressionReport::rmse(Self) -> Double
+
+pub struct RollingWindow {
+  capacity : Int
+  values : Array[Double]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn RollingWindow::capacity(Self) -> Int
+pub fn RollingWindow::clear(Self) -> Self
+pub fn RollingWindow::is_full(Self) -> Bool
+pub fn RollingWindow::len(Self) -> Int
+pub fn RollingWindow::map(Self, (Double) -> Double) -> Self
+pub fn RollingWindow::max(Self) -> Double
+pub fn RollingWindow::mean(Self) -> Double
+pub fn RollingWindow::min(Self) -> Double
+pub fn RollingWindow::new(Int) -> Self
+pub fn RollingWindow::push(Self, Double) -> Self
+pub fn RollingWindow::push_all(Self, Array[Double]) -> Self
+pub fn RollingWindow::quantile(Self, Double) -> Double
+pub fn RollingWindow::stats(Self) -> OnlineStats
+pub fn RollingWindow::trend(Self) -> Double
+pub fn RollingWindow::values(Self) -> Array[Double]
+pub fn RollingWindow::variance(Self) -> Double
+
+pub struct SplitResult {
+  train_indices : Array[Int]
+  test_indices : Array[Int]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn SplitResult::test_indices(Self) -> Array[Int]
+pub fn SplitResult::test_size(Self) -> Int
+pub fn SplitResult::train_indices(Self) -> Array[Int]
+pub fn SplitResult::train_size(Self) -> Int
+
+pub struct UpdateLedger {
+  observations : Array[Observation]
+  binary : BetaBinomial
+  counts : GammaPoisson
+  continuous : NormalNormal
+  categorical : DirichletMultinomial
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn UpdateLedger::binary(Self) -> BetaBinomial
+pub fn UpdateLedger::categorical(Self) -> DirichletMultinomial
+pub fn UpdateLedger::continuous(Self) -> NormalNormal
+pub fn UpdateLedger::counts(Self) -> GammaPoisson
+pub fn UpdateLedger::len(Self) -> Int
+pub fn UpdateLedger::new(BetaBinomial, GammaPoisson, NormalNormal, DirichletMultinomial) -> Self
+pub fn UpdateLedger::observations(Self) -> Array[Observation]
+pub fn UpdateLedger::push(Self, Observation) -> Self
+pub fn UpdateLedger::push_all(Self, Array[Observation]) -> Self
 
 // Type aliases
 
 // Traits
-
