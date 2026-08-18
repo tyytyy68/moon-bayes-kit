@@ -327,6 +327,40 @@ pub fn CusumDetector::positive_score(Self) -> Double
 pub fn CusumDetector::reset(Self) -> Self
 pub fn CusumDetector::update(Self, Double) -> Self
 
+pub struct Dataset {
+  columns : Array[String]
+  rows : Array[Array[Double]]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn Dataset::append(Self, Array[Double]) -> Self
+pub fn Dataset::batch(Self, Int) -> Array[Self]
+pub fn Dataset::column(Self, Int) -> Array[Double]
+pub fn Dataset::column_count(Self) -> Int
+pub fn Dataset::column_index(Self, String) -> Int
+pub fn Dataset::columns(Self) -> Array[String]
+pub fn Dataset::correlation(Self, Int, Int) -> Double
+pub fn Dataset::covariance(Self, Int, Int) -> Double
+pub fn Dataset::describe(Self) -> Array[OnlineStats]
+pub fn Dataset::empty(Array[String]) -> Self
+pub fn Dataset::filter(Self, (Array[Double]) -> Bool) -> Self
+pub fn Dataset::join(Self, Self) -> Self
+pub fn Dataset::map_rows(Self, (Array[Double]) -> Array[Double]) -> Self
+pub fn Dataset::max(Self, Int) -> Double
+pub fn Dataset::mean(Self, Int) -> Double
+pub fn Dataset::min(Self, Int) -> Double
+pub fn Dataset::missing_count(Self, (Double) -> Bool) -> Int
+pub fn Dataset::named_column(Self, String) -> Array[Double]
+pub fn Dataset::new(Array[String], Array[Array[Double]]) -> Self
+pub fn Dataset::normalize(Self, Int) -> Self
+pub fn Dataset::row(Self, Int) -> Array[Double]
+pub fn Dataset::row_count(Self) -> Int
+pub fn Dataset::rows(Self) -> Array[Array[Double]]
+pub fn Dataset::select_columns(Self, Array[Int]) -> Self
+pub fn Dataset::select_rows(Self, Array[Int]) -> Self
+pub fn Dataset::standardize(Self, Int) -> Self
+pub fn Dataset::to_matrix(Self) -> DenseMatrix
+pub fn Dataset::train_test_split(Self, Double) -> (Self, Self)
+pub fn Dataset::variance(Self, Int) -> Double
+
 pub struct DenseMatrix {
   rows : Int
   columns : Int

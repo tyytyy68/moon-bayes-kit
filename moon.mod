@@ -1,6 +1,6 @@
 name = "tyytyy68/moon-bayes-kit"
 
-version = "0.1.3"
+version = "0.1.4"
 
 readme = "README.md"
 
