@@ -7,9 +7,17 @@ import {
 }
 
 // Values
+pub fn aic(Double, Int, Int) -> Double
+
+pub fn autocorrelation(Array[Double], Int) -> Double
+
 pub fn bernoulli_summary(Double) -> DistributionSummary
 
+pub fn bic(Double, Int, Int) -> Double
+
 pub fn bootstrap_indices(DeterministicRng, Int, Int) -> (DeterministicRng, Array[Int])
+
+pub fn bootstrap_mean(DeterministicRng, Array[Double], Int) -> (DeterministicRng, BootstrapSummary)
 
 pub fn brier_score(Array[Double], Array[Bool]) -> Double
 
@@ -23,13 +31,25 @@ pub fn chronological_split(Int, Double) -> SplitResult
 
 pub fn clamp(Double, Double, Double) -> Double
 
+pub fn compare_binary_models(Array[Array[Double]], Array[Bool]) -> Array[ModelScore]
+
+pub fn correlation(Array[Double], Array[Double]) -> Double
+
 pub fn covariance(Array[Double], Array[Double]) -> Double
+
+pub fn covariance_matrix(Array[Array[Double]]) -> DenseMatrix
+
+pub fn cross_validated_rmse(Array[RegressionReport]) -> Double
+
+pub fn cumulative_sum(Array[Double]) -> Array[Double]
 
 pub fn detect_step(Array[Double], Double, Double) -> Int?
 
 pub fn dot(Array[Double], Array[Double]) -> Double
 
 pub fn drift_forecast(Array[Double], Int) -> Array[ForecastPoint]
+
+pub fn empirical_entropy(Array[Int]) -> Double
 
 pub fn entropy_bernoulli(Double) -> Double
 
@@ -41,11 +61,23 @@ pub fn forecast_values(Array[ForecastPoint]) -> Array[Double]
 
 pub fn gini_impurity(Array[Double]) -> Double
 
+pub fn histogram(Array[Double], Double, Double, Int) -> Array[Int]
+
+pub fn interquartile_range(Array[Double]) -> Double
+
 pub fn log_loss(Array[Double], Array[Bool], epsilon? : Double) -> Double
+
+pub fn matrix_vector_distance(Array[Double], Array[Double]) -> Double
 
 pub fn mean(Array[Double]) -> Double
 
 pub fn mean_absolute_error(Array[Double], Array[Double]) -> Double
+
+pub fn median(Array[Double]) -> Double
+
+pub fn median_absolute_deviation(Array[Double]) -> Double
+
+pub fn moving_average(Array[Double], Int) -> Array[Double]
 
 pub fn naive_forecast(Array[Double], Int) -> Array[ForecastPoint]
 
@@ -53,11 +85,19 @@ pub fn normal_summary(Double, Double) -> DistributionSummary
 
 pub fn normalize_probabilities(Array[Double]) -> Array[Double]
 
+pub fn outer_product(Array[Double], Array[Double]) -> DenseMatrix
+
+pub fn percentile_rank(Array[Double], Double) -> Double
+
+pub fn permutation_difference(DeterministicRng, Array[Double], Array[Double], Int) -> (DeterministicRng, Double)
+
 pub fn poisson_summary(Double) -> DistributionSummary
 
 pub fn quantile(Array[Double], Double) -> Double
 
 pub fn rank_descending(Array[Double]) -> Array[Int]
+
+pub fn rank_models(Array[ModelScore]) -> Array[Int]
 
 pub fn rolling_z_scores(Array[Double], Int) -> Array[Double]
 
@@ -65,11 +105,19 @@ pub fn root_mean_squared_error(Array[Double], Array[Double]) -> Double
 
 pub fn seasonal_naive(Array[Double], Int, Int) -> Array[ForecastPoint]
 
+pub fn select_lowest_score(Array[ModelScore]) -> Int
+
 pub fn shuffle(DeterministicRng, Array[Int]) -> (DeterministicRng, Array[Int])
+
+pub fn skewness(Array[Double]) -> Double
+
+pub fn solve_diagonal(Array[Double], Array[Double]) -> Array[Double]
 
 pub fn solve_lower(DenseMatrix, Array[Double]) -> Array[Double]
 
 pub fn solve_upper(DenseMatrix, Array[Double]) -> Array[Double]
+
+pub fn standardized(Array[Double]) -> Array[Double]
 
 pub fn sum(Array[Double]) -> Double
 
@@ -163,6 +211,16 @@ pub fn BinaryBatch::combine(Self, Self) -> Self
 pub fn BinaryBatch::new(Int, Int) -> Self
 pub fn BinaryBatch::success_rate(Self) -> Double
 
+pub struct BootstrapSummary {
+  estimate : Double
+  lower : Double
+  upper : Double
+  replicates : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn BootstrapSummary::estimate(Self) -> Double
+pub fn BootstrapSummary::interval(Self) -> (Double, Double)
+pub fn BootstrapSummary::replicates(Self) -> Int
+
 pub struct CalibrationBin {
   lower : Double
   upper : Double
@@ -225,7 +283,11 @@ pub fn DenseMatrix::add(Self, Self) -> Self
 pub fn DenseMatrix::at(Self, Int, Int) -> Double
 pub fn DenseMatrix::column(Self, Int) -> Array[Double]
 pub fn DenseMatrix::columns(Self) -> Int
+pub fn DenseMatrix::determinant(Self) -> Double
+pub fn DenseMatrix::diagonal(Self) -> Array[Double]
+pub fn DenseMatrix::frobenius_norm(Self) -> Double
 pub fn DenseMatrix::from_rows(Array[Array[Double]]) -> Self
+pub fn DenseMatrix::hadamard(Self, Self) -> Self
 pub fn DenseMatrix::identity(Int) -> Self
 pub fn DenseMatrix::is_symmetric(Self, tolerance? : Double) -> Bool
 pub fn DenseMatrix::matmul(Self, Self) -> Self
@@ -332,6 +394,16 @@ pub fn GammaPoisson::predictive_distribution(Self, Int) -> Array[Double]
 pub fn GammaPoisson::predictive_probability(Self, Int) -> Double
 pub fn GammaPoisson::summary(Self) -> DistributionSummary
 pub fn GammaPoisson::update(Self, Int, Int) -> Self
+
+pub struct ModelScore {
+  name : String
+  score : Double
+  complexity : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ModelScore::complexity(Self) -> Int
+pub fn ModelScore::name(Self) -> String
+pub fn ModelScore::new(String, Double, Int) -> Self
+pub fn ModelScore::score(Self) -> Double
 
 pub(all) struct NormalNormal {
   prior_mean : Double
