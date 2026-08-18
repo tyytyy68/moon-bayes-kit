@@ -79,7 +79,6 @@ generated third-party code, or external fixture data.
 
 - MoonBit module: `tyytyy68/moon-bayes-kit`
 - GitHub: https://github.com/tyytyy68/moon-bayes-kit
-- GitLink: https://gitlink.org.cn/tyytyy68/moon-bayes-kit
 
 ## Examples
 
