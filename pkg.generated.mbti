@@ -31,6 +31,8 @@ pub fn chronological_split(Int, Double) -> SplitResult
 
 pub fn clamp(Double, Double, Double) -> Double
 
+pub fn combine_beta_negative_binomial(BetaNegativeBinomial, BetaNegativeBinomial) -> BetaNegativeBinomial
+
 pub fn compare_binary_models(Array[Array[Double]], Array[Bool]) -> Array[ModelScore]
 
 pub fn correlation(Array[Double], Array[Double]) -> Double
@@ -203,6 +205,30 @@ pub fn BetaBinomial::prior_strength(Self) -> Double
 pub fn BetaBinomial::summary(Self) -> DistributionSummary
 pub fn BetaBinomial::update(Self, Int, Int) -> Self
 
+pub struct BetaNegativeBinomial {
+  alpha : Double
+  beta : Double
+  failures : Int
+  successes : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn BetaNegativeBinomial::credible_interval_95(Self) -> (Double, Double)
+pub fn BetaNegativeBinomial::expected_failures_before_success(Self) -> Double
+pub fn BetaNegativeBinomial::failure_distribution(Self, Int) -> Array[Double]
+pub fn BetaNegativeBinomial::failures(Self) -> Int
+pub fn BetaNegativeBinomial::new(Double, Double) -> Self
+pub fn BetaNegativeBinomial::observe_failure(Self) -> Self
+pub fn BetaNegativeBinomial::observe_success(Self) -> Self
+pub fn BetaNegativeBinomial::posterior_mean(Self) -> Double
+pub fn BetaNegativeBinomial::posterior_mode(Self) -> Double
+pub fn BetaNegativeBinomial::posterior_variance(Self) -> Double
+pub fn BetaNegativeBinomial::predictive_failure_probability(Self) -> Double
+pub fn BetaNegativeBinomial::predictive_success_probability(Self) -> Double
+pub fn BetaNegativeBinomial::probability_of_failures(Self, Int) -> Double
+pub fn BetaNegativeBinomial::successes(Self) -> Int
+pub fn BetaNegativeBinomial::summary(Self) -> PredictiveSummary
+pub fn BetaNegativeBinomial::total_observations(Self) -> Int
+pub fn BetaNegativeBinomial::update(Self, Int, Int) -> Self
+
 pub struct BinaryBatch {
   successes : Int
   trials : Int
@@ -234,6 +260,33 @@ pub fn CalibrationBin::gap(Self) -> Double
 pub fn CalibrationBin::new(Double, Double) -> Self
 pub fn CalibrationBin::observed_rate(Self) -> Double
 pub fn CalibrationBin::predicted_mean(Self) -> Double
+
+pub struct CategoricalClass {
+  label : Int
+  counts : Array[Array[Int]]
+  total : Int
+  prior : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn CategoricalClass::feature_probability(Self, Int, Int) -> Double
+pub fn CategoricalClass::label(Self) -> Int
+pub fn CategoricalClass::new(Int, Int, Int, Int) -> Self
+pub fn CategoricalClass::observations(Self) -> Int
+pub fn CategoricalClass::score(Self, Array[Int]) -> Double
+pub fn CategoricalClass::update(Self, Array[Int]) -> Self
+
+pub struct CategoricalNaiveBayes {
+  classes : Array[CategoricalClass]
+  vocabulary : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn CategoricalNaiveBayes::accuracy(Self, Array[Int], Array[Array[Int]]) -> Double
+pub fn CategoricalNaiveBayes::class_count(Self) -> Int
+pub fn CategoricalNaiveBayes::class_observations(Self, Int) -> Int
+pub fn CategoricalNaiveBayes::fit(Self, Array[Int], Array[Array[Int]]) -> Self
+pub fn CategoricalNaiveBayes::new(Array[Int], Int, Int) -> Self
+pub fn CategoricalNaiveBayes::predict(Self, Array[Int]) -> Int
+pub fn CategoricalNaiveBayes::predict_scores(Self, Array[Int]) -> Array[Double]
+pub fn CategoricalNaiveBayes::update(Self, Int, Array[Int]) -> Self
+pub fn CategoricalNaiveBayes::vocabulary_size(Self) -> Int
 
 pub struct ConfusionMatrix {
   true_positive : Int
@@ -366,6 +419,33 @@ pub fn EwmaDetector::reset(Self) -> Self
 pub fn EwmaDetector::update(Self, Double) -> Self
 pub fn EwmaDetector::updates(Self) -> Int
 
+pub struct ExperimentLog {
+  name : String
+  points : Array[ExperimentPoint]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ExperimentLog::best_step(Self) -> Int
+pub fn ExperimentLog::errors(Self) -> Array[Double]
+pub fn ExperimentLog::improvement(Self) -> Double
+pub fn ExperimentLog::last(Self) -> ExperimentPoint
+pub fn ExperimentLog::len(Self) -> Int
+pub fn ExperimentLog::mean_metric(Self) -> Double
+pub fn ExperimentLog::merge(Self, Self) -> Self
+pub fn ExperimentLog::metric_variance(Self) -> Double
+pub fn ExperimentLog::metrics(Self) -> Array[Double]
+pub fn ExperimentLog::name(Self) -> String
+pub fn ExperimentLog::new(String) -> Self
+pub fn ExperimentLog::points(Self) -> Array[ExperimentPoint]
+pub fn ExperimentLog::record(Self, Double, Double) -> Self
+
+pub struct ExperimentPoint {
+  step : Int
+  metric : Double
+  baseline : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ExperimentPoint::error(Self) -> Double
+pub fn ExperimentPoint::metric(Self) -> Double
+pub fn ExperimentPoint::step(Self) -> Int
+
 pub struct ForecastPoint {
   step : Int
   value : Double
@@ -395,6 +475,36 @@ pub fn GammaPoisson::predictive_probability(Self, Int) -> Double
 pub fn GammaPoisson::summary(Self) -> DistributionSummary
 pub fn GammaPoisson::update(Self, Int, Int) -> Self
 
+pub struct GaussianClass {
+  label : Int
+  prior : Double
+  counts : Array[Int]
+  summaries : Array[OnlineStats]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn GaussianClass::feature_count(Self) -> Int
+pub fn GaussianClass::label(Self) -> Int
+pub fn GaussianClass::mean(Self, Int) -> Double
+pub fn GaussianClass::new(Int, Int, Double) -> Self
+pub fn GaussianClass::observations(Self) -> Int
+pub fn GaussianClass::prior_probability(Self) -> Double
+pub fn GaussianClass::score(Self, Array[Double]) -> Double
+pub fn GaussianClass::update(Self, Array[Double]) -> Self
+pub fn GaussianClass::variance(Self, Int) -> Double
+
+pub struct GaussianNaiveBayes {
+  classes : Array[GaussianClass]
+  feature_count : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn GaussianNaiveBayes::accuracy(Self, Array[Int], Array[Array[Double]]) -> Double
+pub fn GaussianNaiveBayes::class_count(Self) -> Int
+pub fn GaussianNaiveBayes::class_summary(Self, Int) -> GaussianClass
+pub fn GaussianNaiveBayes::feature_count(Self) -> Int
+pub fn GaussianNaiveBayes::fit(Self, Array[Int], Array[Array[Double]]) -> Self
+pub fn GaussianNaiveBayes::new(Array[Int], Int) -> Self
+pub fn GaussianNaiveBayes::predict(Self, Array[Double]) -> Int
+pub fn GaussianNaiveBayes::predict_scores(Self, Array[Double]) -> Array[Double]
+pub fn GaussianNaiveBayes::update(Self, Int, Array[Double]) -> Self
+
 pub struct ModelScore {
   name : String
   score : Double
@@ -404,6 +514,28 @@ pub fn ModelScore::complexity(Self) -> Int
 pub fn ModelScore::name(Self) -> String
 pub fn ModelScore::new(String, Double, Int) -> Self
 pub fn ModelScore::score(Self) -> Double
+
+pub struct NormalInverseGamma {
+  mean : Double
+  scale : Double
+  shape : Double
+  rate : Double
+  observations : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn NormalInverseGamma::credible_interval_95(Self) -> (Double, Double)
+pub fn NormalInverseGamma::information_criterion(Self, Double) -> Double
+pub fn NormalInverseGamma::merge(Self, Self) -> Self
+pub fn NormalInverseGamma::new(Double, Double, Double, Double) -> Self
+pub fn NormalInverseGamma::observations(Self) -> Int
+pub fn NormalInverseGamma::posterior_mean(Self) -> Double
+pub fn NormalInverseGamma::precision(Self) -> Double
+pub fn NormalInverseGamma::predictive_summary(Self) -> PredictiveSummary
+pub fn NormalInverseGamma::predictive_variance(Self) -> Double
+pub fn NormalInverseGamma::standardized(Self, Double) -> Double
+pub fn NormalInverseGamma::update(Self, Double, Double, Int) -> Self
+pub fn NormalInverseGamma::update_one(Self, Double) -> Self
+pub fn NormalInverseGamma::variance_mean(Self) -> Double
+pub fn NormalInverseGamma::variance_mode(Self) -> Double
 
 pub(all) struct NormalNormal {
   prior_mean : Double
@@ -430,6 +562,24 @@ pub(all) enum Observation {
   Continuous(mean~ : Double, observations~ : Int)
   Categorical(index~ : Int)
 } derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct OnlineRidge {
+  model : BayesianLinearRegression
+  regularization : Double
+  updates : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn OnlineRidge::coefficient_uncertainty(Self) -> Array[Double]
+pub fn OnlineRidge::coefficients(Self) -> Array[Double]
+pub fn OnlineRidge::feature_importance(Self) -> Array[Double]
+pub fn OnlineRidge::fit(Self, Array[Array[Double]], Array[Double]) -> Self
+pub fn OnlineRidge::new(Int, Double, Double) -> Self
+pub fn OnlineRidge::predict(Self, Array[Double]) -> Double
+pub fn OnlineRidge::predict_variance(Self, Array[Double]) -> Double
+pub fn OnlineRidge::r_squared(Self, Array[Array[Double]], Array[Double]) -> Double
+pub fn OnlineRidge::regularization(Self) -> Double
+pub fn OnlineRidge::residuals(Self, Array[Array[Double]], Array[Double]) -> Array[Double]
+pub fn OnlineRidge::update(Self, Array[Double], Double) -> Self
+pub fn OnlineRidge::updates(Self) -> Int
 
 pub struct OnlineStats {
   count : Int
