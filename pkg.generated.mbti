@@ -7,109 +7,1681 @@ import {
 }
 
 // Values
+pub fn achieved_power(Double, Double, Int, Double) -> PowerEstimate
+
+pub fn add_trend(Array[Double], TrendEstimate) -> Array[Double]
+
+pub fn adjust_p_values(Array[Double], MultipleTestingMethod) -> Array[Double]
+
+pub fn aggregate_stratified_effect(Array[StratumEffect]) -> CausalEffect
+
+pub fn aggregate_streams(Array[MetricStream]) -> MetricStream
+
 pub fn aic(Double, Int, Int) -> Double
 
+pub fn allocate_epsilon_greedy(Array[ExperimentArm], Int, Double) -> Array[Int]
+
+pub fn allocate_fixed_ratio(Int, Double) -> (Int, Int)
+
+pub fn append_profile(QualityReport, ColumnProfile) -> QualityReport
+
+pub fn apply_numeric_default(Array[Double], Double) -> Array[Double]
+
 pub fn autocorrelation(Array[Double], Int) -> Double
+
+pub fn autocorrelation_series(Array[Double], Int) -> Array[Double]
+
+pub fn autocovariance(Array[Double], Int) -> Double
+
+pub fn balance_table(Array[Array[Double]], Array[Array[Double]], Double) -> Array[BalanceReport]
+
+pub fn balanced_accuracy(DecisionConfusionMatrix) -> Double
 
 pub fn bernoulli_summary(Double) -> DistributionSummary
 
 pub fn bic(Double, Int, Int) -> Double
 
+pub fn bootstrap_distribution(DeterministicRng, Array[Double], Int) -> (DeterministicRng, Array[Double])
+
 pub fn bootstrap_indices(DeterministicRng, Int, Int) -> (DeterministicRng, Array[Int])
 
 pub fn bootstrap_mean(DeterministicRng, Array[Double], Int) -> (DeterministicRng, BootstrapSummary)
 
+pub fn bootstrap_summary(Array[Double], Double) -> UncertaintyBootstrapSummary
+
+pub fn break_even_probability(Double, Double) -> Double
+
 pub fn brier_score(Array[Double], Array[Bool]) -> Double
+
+pub fn brier_survival_score(Array[Double], Array[Bool], Array[Double], Double) -> Double
+
+pub fn calibrate_scale(Array[Double], Array[Double], Double) -> Double
+
+pub fn calibration_bins(Array[Double], Array[Bool], Int) -> Array[UncertaintyCalibrationBin]
 
 pub fn calibration_error(Array[Double], Array[Bool], Int) -> Double
 
 pub fn categorical_summary(Array[Double]) -> Array[DistributionSummary]
 
+pub fn check_allowed_values(QualityReport, String, Array[String], Array[String]) -> QualityReport
+
+pub fn check_cardinality(QualityReport, String, Array[String], Int, Int) -> QualityReport
+
+pub fn check_distribution_drift(QualityReport, String, Array[Double], Array[Double], Double) -> QualityReport
+
+pub fn check_finite(QualityReport, String, Array[Double]) -> QualityReport
+
+pub fn check_freshness(QualityReport, String, Array[Int], Int, Int) -> QualityReport
+
+pub fn check_monotonic(QualityReport, String, Array[Double], Bool) -> QualityReport
+
+pub fn check_null_rate(QualityReport, String, Array[String], Double) -> QualityReport
+
+pub fn check_numeric_range(QualityReport, String, Array[Double], Double, Double, QualitySeverity) -> QualityReport
+
+pub fn check_required(QualityReport, String, Array[String], QualitySeverity) -> QualityReport
+
+pub fn check_string_length(QualityReport, String, Array[String], Int, Int) -> QualityReport
+
+pub fn check_unique(QualityReport, String, Array[String]) -> QualityReport
+
 pub fn cholesky(DenseMatrix) -> DenseMatrix
+
+pub fn choose_action(Double, Array[ActionRule], Action) -> Action
 
 pub fn chronological_split(Int, Double) -> SplitResult
 
 pub fn clamp(Double, Double, Double) -> Double
 
+pub fn clip_value(Double, Double, Double) -> Double
+
+pub fn clip_values(Array[Double], Double, Double) -> Array[Double]
+
 pub fn combine_beta_negative_binomial(BetaNegativeBinomial, BetaNegativeBinomial) -> BetaNegativeBinomial
+
+pub fn combine_predictions(Array[EnsembleMember], EnsembleMode) -> EnsemblePrediction
+
+pub fn compare_arms(ExperimentArm, ExperimentArm) -> EffectEstimate
 
 pub fn compare_binary_models(Array[Array[Double]], Array[Bool]) -> Array[ModelScore]
 
+pub fn compare_feature_signatures(ModelVersion, ModelVersion) -> CompatibilityReport
+
+pub fn compare_schemas(DataSchema, DataSchema) -> SchemaCompatibility
+
+pub fn compare_value(Comparator, Double, Double, Double) -> Bool
+
+pub fn competing_risk_cumulative_incidence(Array[Int], Array[Int], Int) -> Array[Double]
+
+pub fn compose_budgets(Array[PrivacyBudget]) -> PrivacyBudget
+
+pub fn concordance_index(Array[Double], Array[Double], Array[Bool]) -> Double
+
+pub fn conformal_quantile(Array[Double], Double) -> Double
+
+pub fn confusion_matrix(Array[Bool], Array[Bool]) -> DecisionConfusionMatrix
+
 pub fn correlation(Array[Double], Array[Double]) -> Double
+
+pub fn cost_from_confusion(DecisionConfusionMatrix, DecisionCost) -> Double
+
+pub fn counterfactual(Double, Double, Double, Double) -> CounterfactualResult
 
 pub fn covariance(Array[Double], Array[Double]) -> Double
 
 pub fn covariance_matrix(Array[Array[Double]]) -> DenseMatrix
 
+pub fn covariate_balance(Array[Double], Array[Double], Double) -> BalanceReport
+
 pub fn cross_validated_rmse(Array[RegressionReport]) -> Double
 
 pub fn cumulative_sum(Array[Double]) -> Array[Double]
 
+pub fn cuped_adjust(Array[Double], Array[Double], Double) -> CovariateAdjustment
+
+pub fn damped_trend_forecast(Array[Double], Double, Double, Double, Int) -> Array[Double]
+
+pub fn decide_experiment(ExperimentArm, ExperimentArm, SequentialBoundary, Int) -> ExperimentDecision
+
+pub fn decision_consistency(Array[DecisionLog]) -> Double
+
 pub fn detect_step(Array[Double], Double, Double) -> Int?
+
+pub fn detrend(Array[Double]) -> Array[Double]
+
+pub fn difference_in_means(Array[Double], Array[Double]) -> CausalEffect
+
+pub fn dijkstra(WeightedGraph, Int, Int) -> ShortestPath
+
+pub fn disagreement_report(Array[Double], Double) -> DisagreementReport
+
+pub fn distribution_cdf(Array[Double], Array[Double], Double) -> Double
+
+pub fn distribution_mean(Array[Double], Array[Double]) -> Double
+
+pub fn distribution_quantile(Array[Double], Array[Double], Double) -> Double
+
+pub fn distribution_variance(Array[Double], Array[Double]) -> Double
+
+pub fn diversity_matrix(Array[EnsembleMember]) -> Array[Array[Double]]
 
 pub fn dot(Array[Double], Array[Double]) -> Double
 
 pub fn drift_forecast(Array[Double], Int) -> Array[ForecastPoint]
 
+pub fn effect_heterogeneity(Array[CausalEffect]) -> Double
+
+pub fn empirical_cdf(Array[Double], Double) -> Double
+
 pub fn empirical_entropy(Array[Int]) -> Double
 
+pub fn empirical_quantile(Array[Double], Double) -> Double
+
+pub fn ensemble_bias(Array[Double], Array[Double]) -> Double
+
+pub fn ensemble_rank(Array[EnsembleMember]) -> Array[String]
+
+pub fn ensemble_rmse(Array[Double], Array[Double]) -> Double
+
 pub fn entropy_bernoulli(Double) -> Double
+
+pub fn entropy_from_probabilities(Array[Double]) -> Double
+
+pub fn estimate_transitions(Array[Int], Int, Double) -> TransitionEstimate
+
+pub fn evaluate_gate(ValidationGate, ModelVersion, Double, Double, Double) -> GateResult
+
+pub fn evaluate_intervals(Array[PredictionInterval], Array[Double], Double) -> CoverageReport
+
+pub fn evaluate_policy(Array[Double], Array[Double]) -> BanditEvaluation
+
+pub fn evaluate_quantile(Array[Double], Array[Double], Double) -> QuantileLoss
+
+pub fn ewma_forecast(Array[Double], Double, Int) -> Array[Double]
+
+pub fn expected_calibration_error(Array[UncertaintyCalibrationBin]) -> Double
+
+pub fn expected_value(Double, Double, Double) -> Double
+
+pub fn explanation_stability(Explanation, Explanation) -> Double
 
 pub fn exponential_moving_average(Array[Double], Double) -> Array[Double]
 
 pub fn exponentially_weighted_variance(Array[Double], Double) -> Array[Double]
 
+pub fn fairness_gap(Array[FairnessGroup], String, Double) -> FairnessGap
+
+pub fn fairness_group(String, Array[Bool], Array[Bool]) -> FairnessGroup
+
+pub fn feature_drift(String, Array[Double], Array[Double]) -> FeatureDrift
+
+pub fn feature_store_health(FeatureStore, Int) -> FeatureStoreHealth
+
+pub fn fit_linear_stacker(Array[Array[Double]], Array[Double], Int, Double) -> WeightFit
+
+pub fn fit_trend(Array[Double]) -> TrendEstimate
+
+pub fn fixed_absolute_deviation_001(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_002(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_003(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_004(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_005(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_006(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_007(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_008(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_009(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_010(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_011(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_012(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_013(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_014(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_015(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_016(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_017(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_018(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_019(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_020(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_021(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_022(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_023(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_024(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_025(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_026(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_027(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_028(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_029(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_030(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_031(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_032(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_033(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_034(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_035(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_036(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_037(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_038(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_039(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_040(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_041(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_042(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_043(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_044(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_045(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_046(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_047(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_048(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_049(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_050(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_051(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_052(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_053(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_054(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_055(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_056(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_057(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_058(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_059(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_060(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_061(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_062(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_063(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_064(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_065(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_066(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_067(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_068(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_069(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_070(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_071(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_072(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_073(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_074(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_075(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_076(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_077(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_078(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_079(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_080(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_081(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_082(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_083(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_084(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_085(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_086(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_087(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_088(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_089(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_090(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_091(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_092(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_093(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_094(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_095(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_096(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_097(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_098(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_099(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_100(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_101(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_102(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_103(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_104(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_105(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_106(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_107(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_108(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_109(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_110(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_111(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_112(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_113(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_114(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_115(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_116(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_117(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_118(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_119(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_120(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_121(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_122(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_123(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_124(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_125(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_126(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_127(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_128(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_129(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_130(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_131(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_132(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_133(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_134(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_135(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_136(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_137(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_138(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_139(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_140(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_141(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_142(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_143(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_144(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_145(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_146(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_147(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_148(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_149(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_150(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_151(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_152(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_153(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_154(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_155(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_156(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_157(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_158(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_159(Array[Double]) -> Double
+
+pub fn fixed_absolute_deviation_160(Array[Double]) -> Double
+
+pub fn fixed_mean_001(Array[Double]) -> Double
+
+pub fn fixed_mean_002(Array[Double]) -> Double
+
+pub fn fixed_mean_003(Array[Double]) -> Double
+
+pub fn fixed_mean_004(Array[Double]) -> Double
+
+pub fn fixed_mean_005(Array[Double]) -> Double
+
+pub fn fixed_mean_006(Array[Double]) -> Double
+
+pub fn fixed_mean_007(Array[Double]) -> Double
+
+pub fn fixed_mean_008(Array[Double]) -> Double
+
+pub fn fixed_mean_009(Array[Double]) -> Double
+
+pub fn fixed_mean_010(Array[Double]) -> Double
+
+pub fn fixed_mean_011(Array[Double]) -> Double
+
+pub fn fixed_mean_012(Array[Double]) -> Double
+
+pub fn fixed_mean_013(Array[Double]) -> Double
+
+pub fn fixed_mean_014(Array[Double]) -> Double
+
+pub fn fixed_mean_015(Array[Double]) -> Double
+
+pub fn fixed_mean_016(Array[Double]) -> Double
+
+pub fn fixed_mean_017(Array[Double]) -> Double
+
+pub fn fixed_mean_018(Array[Double]) -> Double
+
+pub fn fixed_mean_019(Array[Double]) -> Double
+
+pub fn fixed_mean_020(Array[Double]) -> Double
+
+pub fn fixed_mean_021(Array[Double]) -> Double
+
+pub fn fixed_mean_022(Array[Double]) -> Double
+
+pub fn fixed_mean_023(Array[Double]) -> Double
+
+pub fn fixed_mean_024(Array[Double]) -> Double
+
+pub fn fixed_mean_025(Array[Double]) -> Double
+
+pub fn fixed_mean_026(Array[Double]) -> Double
+
+pub fn fixed_mean_027(Array[Double]) -> Double
+
+pub fn fixed_mean_028(Array[Double]) -> Double
+
+pub fn fixed_mean_029(Array[Double]) -> Double
+
+pub fn fixed_mean_030(Array[Double]) -> Double
+
+pub fn fixed_mean_031(Array[Double]) -> Double
+
+pub fn fixed_mean_032(Array[Double]) -> Double
+
+pub fn fixed_mean_033(Array[Double]) -> Double
+
+pub fn fixed_mean_034(Array[Double]) -> Double
+
+pub fn fixed_mean_035(Array[Double]) -> Double
+
+pub fn fixed_mean_036(Array[Double]) -> Double
+
+pub fn fixed_mean_037(Array[Double]) -> Double
+
+pub fn fixed_mean_038(Array[Double]) -> Double
+
+pub fn fixed_mean_039(Array[Double]) -> Double
+
+pub fn fixed_mean_040(Array[Double]) -> Double
+
+pub fn fixed_mean_041(Array[Double]) -> Double
+
+pub fn fixed_mean_042(Array[Double]) -> Double
+
+pub fn fixed_mean_043(Array[Double]) -> Double
+
+pub fn fixed_mean_044(Array[Double]) -> Double
+
+pub fn fixed_mean_045(Array[Double]) -> Double
+
+pub fn fixed_mean_046(Array[Double]) -> Double
+
+pub fn fixed_mean_047(Array[Double]) -> Double
+
+pub fn fixed_mean_048(Array[Double]) -> Double
+
+pub fn fixed_mean_049(Array[Double]) -> Double
+
+pub fn fixed_mean_050(Array[Double]) -> Double
+
+pub fn fixed_mean_051(Array[Double]) -> Double
+
+pub fn fixed_mean_052(Array[Double]) -> Double
+
+pub fn fixed_mean_053(Array[Double]) -> Double
+
+pub fn fixed_mean_054(Array[Double]) -> Double
+
+pub fn fixed_mean_055(Array[Double]) -> Double
+
+pub fn fixed_mean_056(Array[Double]) -> Double
+
+pub fn fixed_mean_057(Array[Double]) -> Double
+
+pub fn fixed_mean_058(Array[Double]) -> Double
+
+pub fn fixed_mean_059(Array[Double]) -> Double
+
+pub fn fixed_mean_060(Array[Double]) -> Double
+
+pub fn fixed_mean_061(Array[Double]) -> Double
+
+pub fn fixed_mean_062(Array[Double]) -> Double
+
+pub fn fixed_mean_063(Array[Double]) -> Double
+
+pub fn fixed_mean_064(Array[Double]) -> Double
+
+pub fn fixed_mean_065(Array[Double]) -> Double
+
+pub fn fixed_mean_066(Array[Double]) -> Double
+
+pub fn fixed_mean_067(Array[Double]) -> Double
+
+pub fn fixed_mean_068(Array[Double]) -> Double
+
+pub fn fixed_mean_069(Array[Double]) -> Double
+
+pub fn fixed_mean_070(Array[Double]) -> Double
+
+pub fn fixed_mean_071(Array[Double]) -> Double
+
+pub fn fixed_mean_072(Array[Double]) -> Double
+
+pub fn fixed_mean_073(Array[Double]) -> Double
+
+pub fn fixed_mean_074(Array[Double]) -> Double
+
+pub fn fixed_mean_075(Array[Double]) -> Double
+
+pub fn fixed_mean_076(Array[Double]) -> Double
+
+pub fn fixed_mean_077(Array[Double]) -> Double
+
+pub fn fixed_mean_078(Array[Double]) -> Double
+
+pub fn fixed_mean_079(Array[Double]) -> Double
+
+pub fn fixed_mean_080(Array[Double]) -> Double
+
+pub fn fixed_mean_081(Array[Double]) -> Double
+
+pub fn fixed_mean_082(Array[Double]) -> Double
+
+pub fn fixed_mean_083(Array[Double]) -> Double
+
+pub fn fixed_mean_084(Array[Double]) -> Double
+
+pub fn fixed_mean_085(Array[Double]) -> Double
+
+pub fn fixed_mean_086(Array[Double]) -> Double
+
+pub fn fixed_mean_087(Array[Double]) -> Double
+
+pub fn fixed_mean_088(Array[Double]) -> Double
+
+pub fn fixed_mean_089(Array[Double]) -> Double
+
+pub fn fixed_mean_090(Array[Double]) -> Double
+
+pub fn fixed_mean_091(Array[Double]) -> Double
+
+pub fn fixed_mean_092(Array[Double]) -> Double
+
+pub fn fixed_mean_093(Array[Double]) -> Double
+
+pub fn fixed_mean_094(Array[Double]) -> Double
+
+pub fn fixed_mean_095(Array[Double]) -> Double
+
+pub fn fixed_mean_096(Array[Double]) -> Double
+
+pub fn fixed_mean_097(Array[Double]) -> Double
+
+pub fn fixed_mean_098(Array[Double]) -> Double
+
+pub fn fixed_mean_099(Array[Double]) -> Double
+
+pub fn fixed_mean_100(Array[Double]) -> Double
+
+pub fn fixed_mean_101(Array[Double]) -> Double
+
+pub fn fixed_mean_102(Array[Double]) -> Double
+
+pub fn fixed_mean_103(Array[Double]) -> Double
+
+pub fn fixed_mean_104(Array[Double]) -> Double
+
+pub fn fixed_mean_105(Array[Double]) -> Double
+
+pub fn fixed_mean_106(Array[Double]) -> Double
+
+pub fn fixed_mean_107(Array[Double]) -> Double
+
+pub fn fixed_mean_108(Array[Double]) -> Double
+
+pub fn fixed_mean_109(Array[Double]) -> Double
+
+pub fn fixed_mean_110(Array[Double]) -> Double
+
+pub fn fixed_mean_111(Array[Double]) -> Double
+
+pub fn fixed_mean_112(Array[Double]) -> Double
+
+pub fn fixed_mean_113(Array[Double]) -> Double
+
+pub fn fixed_mean_114(Array[Double]) -> Double
+
+pub fn fixed_mean_115(Array[Double]) -> Double
+
+pub fn fixed_mean_116(Array[Double]) -> Double
+
+pub fn fixed_mean_117(Array[Double]) -> Double
+
+pub fn fixed_mean_118(Array[Double]) -> Double
+
+pub fn fixed_mean_119(Array[Double]) -> Double
+
+pub fn fixed_mean_120(Array[Double]) -> Double
+
+pub fn fixed_mean_121(Array[Double]) -> Double
+
+pub fn fixed_mean_122(Array[Double]) -> Double
+
+pub fn fixed_mean_123(Array[Double]) -> Double
+
+pub fn fixed_mean_124(Array[Double]) -> Double
+
+pub fn fixed_mean_125(Array[Double]) -> Double
+
+pub fn fixed_mean_126(Array[Double]) -> Double
+
+pub fn fixed_mean_127(Array[Double]) -> Double
+
+pub fn fixed_mean_128(Array[Double]) -> Double
+
+pub fn fixed_mean_129(Array[Double]) -> Double
+
+pub fn fixed_mean_130(Array[Double]) -> Double
+
+pub fn fixed_mean_131(Array[Double]) -> Double
+
+pub fn fixed_mean_132(Array[Double]) -> Double
+
+pub fn fixed_mean_133(Array[Double]) -> Double
+
+pub fn fixed_mean_134(Array[Double]) -> Double
+
+pub fn fixed_mean_135(Array[Double]) -> Double
+
+pub fn fixed_mean_136(Array[Double]) -> Double
+
+pub fn fixed_mean_137(Array[Double]) -> Double
+
+pub fn fixed_mean_138(Array[Double]) -> Double
+
+pub fn fixed_mean_139(Array[Double]) -> Double
+
+pub fn fixed_mean_140(Array[Double]) -> Double
+
+pub fn fixed_mean_141(Array[Double]) -> Double
+
+pub fn fixed_mean_142(Array[Double]) -> Double
+
+pub fn fixed_mean_143(Array[Double]) -> Double
+
+pub fn fixed_mean_144(Array[Double]) -> Double
+
+pub fn fixed_mean_145(Array[Double]) -> Double
+
+pub fn fixed_mean_146(Array[Double]) -> Double
+
+pub fn fixed_mean_147(Array[Double]) -> Double
+
+pub fn fixed_mean_148(Array[Double]) -> Double
+
+pub fn fixed_mean_149(Array[Double]) -> Double
+
+pub fn fixed_mean_150(Array[Double]) -> Double
+
+pub fn fixed_mean_151(Array[Double]) -> Double
+
+pub fn fixed_mean_152(Array[Double]) -> Double
+
+pub fn fixed_mean_153(Array[Double]) -> Double
+
+pub fn fixed_mean_154(Array[Double]) -> Double
+
+pub fn fixed_mean_155(Array[Double]) -> Double
+
+pub fn fixed_mean_156(Array[Double]) -> Double
+
+pub fn fixed_mean_157(Array[Double]) -> Double
+
+pub fn fixed_mean_158(Array[Double]) -> Double
+
+pub fn fixed_mean_159(Array[Double]) -> Double
+
+pub fn fixed_mean_160(Array[Double]) -> Double
+
+pub fn fixed_median_001(Array[Double]) -> Double
+
+pub fn fixed_median_002(Array[Double]) -> Double
+
+pub fn fixed_median_003(Array[Double]) -> Double
+
+pub fn fixed_median_004(Array[Double]) -> Double
+
+pub fn fixed_median_005(Array[Double]) -> Double
+
+pub fn fixed_median_006(Array[Double]) -> Double
+
+pub fn fixed_median_007(Array[Double]) -> Double
+
+pub fn fixed_median_008(Array[Double]) -> Double
+
+pub fn fixed_median_009(Array[Double]) -> Double
+
+pub fn fixed_median_010(Array[Double]) -> Double
+
+pub fn fixed_median_011(Array[Double]) -> Double
+
+pub fn fixed_median_012(Array[Double]) -> Double
+
+pub fn fixed_median_013(Array[Double]) -> Double
+
+pub fn fixed_median_014(Array[Double]) -> Double
+
+pub fn fixed_median_015(Array[Double]) -> Double
+
+pub fn fixed_median_016(Array[Double]) -> Double
+
+pub fn fixed_median_017(Array[Double]) -> Double
+
+pub fn fixed_median_018(Array[Double]) -> Double
+
+pub fn fixed_median_019(Array[Double]) -> Double
+
+pub fn fixed_median_020(Array[Double]) -> Double
+
+pub fn fixed_median_021(Array[Double]) -> Double
+
+pub fn fixed_median_022(Array[Double]) -> Double
+
+pub fn fixed_median_023(Array[Double]) -> Double
+
+pub fn fixed_median_024(Array[Double]) -> Double
+
+pub fn fixed_median_025(Array[Double]) -> Double
+
+pub fn fixed_median_026(Array[Double]) -> Double
+
+pub fn fixed_median_027(Array[Double]) -> Double
+
+pub fn fixed_median_028(Array[Double]) -> Double
+
+pub fn fixed_median_029(Array[Double]) -> Double
+
+pub fn fixed_median_030(Array[Double]) -> Double
+
+pub fn fixed_median_031(Array[Double]) -> Double
+
+pub fn fixed_median_032(Array[Double]) -> Double
+
+pub fn fixed_median_033(Array[Double]) -> Double
+
+pub fn fixed_median_034(Array[Double]) -> Double
+
+pub fn fixed_median_035(Array[Double]) -> Double
+
+pub fn fixed_median_036(Array[Double]) -> Double
+
+pub fn fixed_median_037(Array[Double]) -> Double
+
+pub fn fixed_median_038(Array[Double]) -> Double
+
+pub fn fixed_median_039(Array[Double]) -> Double
+
+pub fn fixed_median_040(Array[Double]) -> Double
+
+pub fn fixed_median_041(Array[Double]) -> Double
+
+pub fn fixed_median_042(Array[Double]) -> Double
+
+pub fn fixed_median_043(Array[Double]) -> Double
+
+pub fn fixed_median_044(Array[Double]) -> Double
+
+pub fn fixed_median_045(Array[Double]) -> Double
+
+pub fn fixed_median_046(Array[Double]) -> Double
+
+pub fn fixed_median_047(Array[Double]) -> Double
+
+pub fn fixed_median_048(Array[Double]) -> Double
+
+pub fn fixed_median_049(Array[Double]) -> Double
+
+pub fn fixed_median_050(Array[Double]) -> Double
+
+pub fn fixed_median_051(Array[Double]) -> Double
+
+pub fn fixed_median_052(Array[Double]) -> Double
+
+pub fn fixed_median_053(Array[Double]) -> Double
+
+pub fn fixed_median_054(Array[Double]) -> Double
+
+pub fn fixed_median_055(Array[Double]) -> Double
+
+pub fn fixed_median_056(Array[Double]) -> Double
+
+pub fn fixed_median_057(Array[Double]) -> Double
+
+pub fn fixed_median_058(Array[Double]) -> Double
+
+pub fn fixed_median_059(Array[Double]) -> Double
+
+pub fn fixed_median_060(Array[Double]) -> Double
+
+pub fn fixed_median_061(Array[Double]) -> Double
+
+pub fn fixed_median_062(Array[Double]) -> Double
+
+pub fn fixed_median_063(Array[Double]) -> Double
+
+pub fn fixed_median_064(Array[Double]) -> Double
+
+pub fn fixed_median_065(Array[Double]) -> Double
+
+pub fn fixed_median_066(Array[Double]) -> Double
+
+pub fn fixed_median_067(Array[Double]) -> Double
+
+pub fn fixed_median_068(Array[Double]) -> Double
+
+pub fn fixed_median_069(Array[Double]) -> Double
+
+pub fn fixed_median_070(Array[Double]) -> Double
+
+pub fn fixed_median_071(Array[Double]) -> Double
+
+pub fn fixed_median_072(Array[Double]) -> Double
+
+pub fn fixed_median_073(Array[Double]) -> Double
+
+pub fn fixed_median_074(Array[Double]) -> Double
+
+pub fn fixed_median_075(Array[Double]) -> Double
+
+pub fn fixed_median_076(Array[Double]) -> Double
+
+pub fn fixed_median_077(Array[Double]) -> Double
+
+pub fn fixed_median_078(Array[Double]) -> Double
+
+pub fn fixed_median_079(Array[Double]) -> Double
+
+pub fn fixed_median_080(Array[Double]) -> Double
+
+pub fn fixed_median_081(Array[Double]) -> Double
+
+pub fn fixed_median_082(Array[Double]) -> Double
+
+pub fn fixed_median_083(Array[Double]) -> Double
+
+pub fn fixed_median_084(Array[Double]) -> Double
+
+pub fn fixed_median_085(Array[Double]) -> Double
+
+pub fn fixed_median_086(Array[Double]) -> Double
+
+pub fn fixed_median_087(Array[Double]) -> Double
+
+pub fn fixed_median_088(Array[Double]) -> Double
+
+pub fn fixed_median_089(Array[Double]) -> Double
+
+pub fn fixed_median_090(Array[Double]) -> Double
+
+pub fn fixed_median_091(Array[Double]) -> Double
+
+pub fn fixed_median_092(Array[Double]) -> Double
+
+pub fn fixed_median_093(Array[Double]) -> Double
+
+pub fn fixed_median_094(Array[Double]) -> Double
+
+pub fn fixed_median_095(Array[Double]) -> Double
+
+pub fn fixed_median_096(Array[Double]) -> Double
+
+pub fn fixed_median_097(Array[Double]) -> Double
+
+pub fn fixed_median_098(Array[Double]) -> Double
+
+pub fn fixed_median_099(Array[Double]) -> Double
+
+pub fn fixed_median_100(Array[Double]) -> Double
+
+pub fn fixed_median_101(Array[Double]) -> Double
+
+pub fn fixed_median_102(Array[Double]) -> Double
+
+pub fn fixed_median_103(Array[Double]) -> Double
+
+pub fn fixed_median_104(Array[Double]) -> Double
+
+pub fn fixed_median_105(Array[Double]) -> Double
+
+pub fn fixed_median_106(Array[Double]) -> Double
+
+pub fn fixed_median_107(Array[Double]) -> Double
+
+pub fn fixed_median_108(Array[Double]) -> Double
+
+pub fn fixed_median_109(Array[Double]) -> Double
+
+pub fn fixed_median_110(Array[Double]) -> Double
+
+pub fn fixed_median_111(Array[Double]) -> Double
+
+pub fn fixed_median_112(Array[Double]) -> Double
+
+pub fn fixed_median_113(Array[Double]) -> Double
+
+pub fn fixed_median_114(Array[Double]) -> Double
+
+pub fn fixed_median_115(Array[Double]) -> Double
+
+pub fn fixed_median_116(Array[Double]) -> Double
+
+pub fn fixed_median_117(Array[Double]) -> Double
+
+pub fn fixed_median_118(Array[Double]) -> Double
+
+pub fn fixed_median_119(Array[Double]) -> Double
+
+pub fn fixed_median_120(Array[Double]) -> Double
+
+pub fn fixed_median_121(Array[Double]) -> Double
+
+pub fn fixed_median_122(Array[Double]) -> Double
+
+pub fn fixed_median_123(Array[Double]) -> Double
+
+pub fn fixed_median_124(Array[Double]) -> Double
+
+pub fn fixed_median_125(Array[Double]) -> Double
+
+pub fn fixed_median_126(Array[Double]) -> Double
+
+pub fn fixed_median_127(Array[Double]) -> Double
+
+pub fn fixed_median_128(Array[Double]) -> Double
+
+pub fn fixed_median_129(Array[Double]) -> Double
+
+pub fn fixed_median_130(Array[Double]) -> Double
+
+pub fn fixed_median_131(Array[Double]) -> Double
+
+pub fn fixed_median_132(Array[Double]) -> Double
+
+pub fn fixed_median_133(Array[Double]) -> Double
+
+pub fn fixed_median_134(Array[Double]) -> Double
+
+pub fn fixed_median_135(Array[Double]) -> Double
+
+pub fn fixed_median_136(Array[Double]) -> Double
+
+pub fn fixed_median_137(Array[Double]) -> Double
+
+pub fn fixed_median_138(Array[Double]) -> Double
+
+pub fn fixed_median_139(Array[Double]) -> Double
+
+pub fn fixed_median_140(Array[Double]) -> Double
+
+pub fn fixed_median_141(Array[Double]) -> Double
+
+pub fn fixed_median_142(Array[Double]) -> Double
+
+pub fn fixed_median_143(Array[Double]) -> Double
+
+pub fn fixed_median_144(Array[Double]) -> Double
+
+pub fn fixed_median_145(Array[Double]) -> Double
+
+pub fn fixed_median_146(Array[Double]) -> Double
+
+pub fn fixed_median_147(Array[Double]) -> Double
+
+pub fn fixed_median_148(Array[Double]) -> Double
+
+pub fn fixed_median_149(Array[Double]) -> Double
+
+pub fn fixed_median_150(Array[Double]) -> Double
+
+pub fn fixed_median_151(Array[Double]) -> Double
+
+pub fn fixed_median_152(Array[Double]) -> Double
+
+pub fn fixed_median_153(Array[Double]) -> Double
+
+pub fn fixed_median_154(Array[Double]) -> Double
+
+pub fn fixed_median_155(Array[Double]) -> Double
+
+pub fn fixed_median_156(Array[Double]) -> Double
+
+pub fn fixed_median_157(Array[Double]) -> Double
+
+pub fn fixed_median_158(Array[Double]) -> Double
+
+pub fn fixed_median_159(Array[Double]) -> Double
+
+pub fn fixed_median_160(Array[Double]) -> Double
+
+pub fn fixed_variance_001(Array[Double]) -> Double
+
+pub fn fixed_variance_002(Array[Double]) -> Double
+
+pub fn fixed_variance_003(Array[Double]) -> Double
+
+pub fn fixed_variance_004(Array[Double]) -> Double
+
+pub fn fixed_variance_005(Array[Double]) -> Double
+
+pub fn fixed_variance_006(Array[Double]) -> Double
+
+pub fn fixed_variance_007(Array[Double]) -> Double
+
+pub fn fixed_variance_008(Array[Double]) -> Double
+
+pub fn fixed_variance_009(Array[Double]) -> Double
+
+pub fn fixed_variance_010(Array[Double]) -> Double
+
+pub fn fixed_variance_011(Array[Double]) -> Double
+
+pub fn fixed_variance_012(Array[Double]) -> Double
+
+pub fn fixed_variance_013(Array[Double]) -> Double
+
+pub fn fixed_variance_014(Array[Double]) -> Double
+
+pub fn fixed_variance_015(Array[Double]) -> Double
+
+pub fn fixed_variance_016(Array[Double]) -> Double
+
+pub fn fixed_variance_017(Array[Double]) -> Double
+
+pub fn fixed_variance_018(Array[Double]) -> Double
+
+pub fn fixed_variance_019(Array[Double]) -> Double
+
+pub fn fixed_variance_020(Array[Double]) -> Double
+
+pub fn fixed_variance_021(Array[Double]) -> Double
+
+pub fn fixed_variance_022(Array[Double]) -> Double
+
+pub fn fixed_variance_023(Array[Double]) -> Double
+
+pub fn fixed_variance_024(Array[Double]) -> Double
+
+pub fn fixed_variance_025(Array[Double]) -> Double
+
+pub fn fixed_variance_026(Array[Double]) -> Double
+
+pub fn fixed_variance_027(Array[Double]) -> Double
+
+pub fn fixed_variance_028(Array[Double]) -> Double
+
+pub fn fixed_variance_029(Array[Double]) -> Double
+
+pub fn fixed_variance_030(Array[Double]) -> Double
+
+pub fn fixed_variance_031(Array[Double]) -> Double
+
+pub fn fixed_variance_032(Array[Double]) -> Double
+
+pub fn fixed_variance_033(Array[Double]) -> Double
+
+pub fn fixed_variance_034(Array[Double]) -> Double
+
+pub fn fixed_variance_035(Array[Double]) -> Double
+
+pub fn fixed_variance_036(Array[Double]) -> Double
+
+pub fn fixed_variance_037(Array[Double]) -> Double
+
+pub fn fixed_variance_038(Array[Double]) -> Double
+
+pub fn fixed_variance_039(Array[Double]) -> Double
+
+pub fn fixed_variance_040(Array[Double]) -> Double
+
+pub fn fixed_variance_041(Array[Double]) -> Double
+
+pub fn fixed_variance_042(Array[Double]) -> Double
+
+pub fn fixed_variance_043(Array[Double]) -> Double
+
+pub fn fixed_variance_044(Array[Double]) -> Double
+
+pub fn fixed_variance_045(Array[Double]) -> Double
+
+pub fn fixed_variance_046(Array[Double]) -> Double
+
+pub fn fixed_variance_047(Array[Double]) -> Double
+
+pub fn fixed_variance_048(Array[Double]) -> Double
+
+pub fn fixed_variance_049(Array[Double]) -> Double
+
+pub fn fixed_variance_050(Array[Double]) -> Double
+
+pub fn fixed_variance_051(Array[Double]) -> Double
+
+pub fn fixed_variance_052(Array[Double]) -> Double
+
+pub fn fixed_variance_053(Array[Double]) -> Double
+
+pub fn fixed_variance_054(Array[Double]) -> Double
+
+pub fn fixed_variance_055(Array[Double]) -> Double
+
+pub fn fixed_variance_056(Array[Double]) -> Double
+
+pub fn fixed_variance_057(Array[Double]) -> Double
+
+pub fn fixed_variance_058(Array[Double]) -> Double
+
+pub fn fixed_variance_059(Array[Double]) -> Double
+
+pub fn fixed_variance_060(Array[Double]) -> Double
+
+pub fn fixed_variance_061(Array[Double]) -> Double
+
+pub fn fixed_variance_062(Array[Double]) -> Double
+
+pub fn fixed_variance_063(Array[Double]) -> Double
+
+pub fn fixed_variance_064(Array[Double]) -> Double
+
+pub fn fixed_variance_065(Array[Double]) -> Double
+
+pub fn fixed_variance_066(Array[Double]) -> Double
+
+pub fn fixed_variance_067(Array[Double]) -> Double
+
+pub fn fixed_variance_068(Array[Double]) -> Double
+
+pub fn fixed_variance_069(Array[Double]) -> Double
+
+pub fn fixed_variance_070(Array[Double]) -> Double
+
+pub fn fixed_variance_071(Array[Double]) -> Double
+
+pub fn fixed_variance_072(Array[Double]) -> Double
+
+pub fn fixed_variance_073(Array[Double]) -> Double
+
+pub fn fixed_variance_074(Array[Double]) -> Double
+
+pub fn fixed_variance_075(Array[Double]) -> Double
+
+pub fn fixed_variance_076(Array[Double]) -> Double
+
+pub fn fixed_variance_077(Array[Double]) -> Double
+
+pub fn fixed_variance_078(Array[Double]) -> Double
+
+pub fn fixed_variance_079(Array[Double]) -> Double
+
+pub fn fixed_variance_080(Array[Double]) -> Double
+
+pub fn fixed_variance_081(Array[Double]) -> Double
+
+pub fn fixed_variance_082(Array[Double]) -> Double
+
+pub fn fixed_variance_083(Array[Double]) -> Double
+
+pub fn fixed_variance_084(Array[Double]) -> Double
+
+pub fn fixed_variance_085(Array[Double]) -> Double
+
+pub fn fixed_variance_086(Array[Double]) -> Double
+
+pub fn fixed_variance_087(Array[Double]) -> Double
+
+pub fn fixed_variance_088(Array[Double]) -> Double
+
+pub fn fixed_variance_089(Array[Double]) -> Double
+
+pub fn fixed_variance_090(Array[Double]) -> Double
+
+pub fn fixed_variance_091(Array[Double]) -> Double
+
+pub fn fixed_variance_092(Array[Double]) -> Double
+
+pub fn fixed_variance_093(Array[Double]) -> Double
+
+pub fn fixed_variance_094(Array[Double]) -> Double
+
+pub fn fixed_variance_095(Array[Double]) -> Double
+
+pub fn fixed_variance_096(Array[Double]) -> Double
+
+pub fn fixed_variance_097(Array[Double]) -> Double
+
+pub fn fixed_variance_098(Array[Double]) -> Double
+
+pub fn fixed_variance_099(Array[Double]) -> Double
+
+pub fn fixed_variance_100(Array[Double]) -> Double
+
+pub fn fixed_variance_101(Array[Double]) -> Double
+
+pub fn fixed_variance_102(Array[Double]) -> Double
+
+pub fn fixed_variance_103(Array[Double]) -> Double
+
+pub fn fixed_variance_104(Array[Double]) -> Double
+
+pub fn fixed_variance_105(Array[Double]) -> Double
+
+pub fn fixed_variance_106(Array[Double]) -> Double
+
+pub fn fixed_variance_107(Array[Double]) -> Double
+
+pub fn fixed_variance_108(Array[Double]) -> Double
+
+pub fn fixed_variance_109(Array[Double]) -> Double
+
+pub fn fixed_variance_110(Array[Double]) -> Double
+
+pub fn fixed_variance_111(Array[Double]) -> Double
+
+pub fn fixed_variance_112(Array[Double]) -> Double
+
+pub fn fixed_variance_113(Array[Double]) -> Double
+
+pub fn fixed_variance_114(Array[Double]) -> Double
+
+pub fn fixed_variance_115(Array[Double]) -> Double
+
+pub fn fixed_variance_116(Array[Double]) -> Double
+
+pub fn fixed_variance_117(Array[Double]) -> Double
+
+pub fn fixed_variance_118(Array[Double]) -> Double
+
+pub fn fixed_variance_119(Array[Double]) -> Double
+
+pub fn fixed_variance_120(Array[Double]) -> Double
+
+pub fn fixed_variance_121(Array[Double]) -> Double
+
+pub fn fixed_variance_122(Array[Double]) -> Double
+
+pub fn fixed_variance_123(Array[Double]) -> Double
+
+pub fn fixed_variance_124(Array[Double]) -> Double
+
+pub fn fixed_variance_125(Array[Double]) -> Double
+
+pub fn fixed_variance_126(Array[Double]) -> Double
+
+pub fn fixed_variance_127(Array[Double]) -> Double
+
+pub fn fixed_variance_128(Array[Double]) -> Double
+
+pub fn fixed_variance_129(Array[Double]) -> Double
+
+pub fn fixed_variance_130(Array[Double]) -> Double
+
+pub fn fixed_variance_131(Array[Double]) -> Double
+
+pub fn fixed_variance_132(Array[Double]) -> Double
+
+pub fn fixed_variance_133(Array[Double]) -> Double
+
+pub fn fixed_variance_134(Array[Double]) -> Double
+
+pub fn fixed_variance_135(Array[Double]) -> Double
+
+pub fn fixed_variance_136(Array[Double]) -> Double
+
+pub fn fixed_variance_137(Array[Double]) -> Double
+
+pub fn fixed_variance_138(Array[Double]) -> Double
+
+pub fn fixed_variance_139(Array[Double]) -> Double
+
+pub fn fixed_variance_140(Array[Double]) -> Double
+
+pub fn fixed_variance_141(Array[Double]) -> Double
+
+pub fn fixed_variance_142(Array[Double]) -> Double
+
+pub fn fixed_variance_143(Array[Double]) -> Double
+
+pub fn fixed_variance_144(Array[Double]) -> Double
+
+pub fn fixed_variance_145(Array[Double]) -> Double
+
+pub fn fixed_variance_146(Array[Double]) -> Double
+
+pub fn fixed_variance_147(Array[Double]) -> Double
+
+pub fn fixed_variance_148(Array[Double]) -> Double
+
+pub fn fixed_variance_149(Array[Double]) -> Double
+
+pub fn fixed_variance_150(Array[Double]) -> Double
+
+pub fn fixed_variance_151(Array[Double]) -> Double
+
+pub fn fixed_variance_152(Array[Double]) -> Double
+
+pub fn fixed_variance_153(Array[Double]) -> Double
+
+pub fn fixed_variance_154(Array[Double]) -> Double
+
+pub fn fixed_variance_155(Array[Double]) -> Double
+
+pub fn fixed_variance_156(Array[Double]) -> Double
+
+pub fn fixed_variance_157(Array[Double]) -> Double
+
+pub fn fixed_variance_158(Array[Double]) -> Double
+
+pub fn fixed_variance_159(Array[Double]) -> Double
+
+pub fn fixed_variance_160(Array[Double]) -> Double
+
+pub fn forecast_bias(Array[Double], Array[Double]) -> Double
+
+pub fn forecast_mase(Array[Double], Array[Double], Array[Double], Int) -> Double
+
+pub fn forecast_smape(Array[Double], Array[Double]) -> Double
+
 pub fn forecast_values(Array[ForecastPoint]) -> Array[Double]
+
+pub fn gaussian_interval(Double, Double, Double) -> PredictionInterval
+
+pub fn gaussian_release(Double, Double, Double, Double, Double) -> PrivateRelease
+
+pub fn generate_migrations(DataSchema, DataSchema) -> Array[SchemaMigration]
+
+pub fn gini_from_probabilities(Array[Double]) -> Double
 
 pub fn gini_impurity(Array[Double]) -> Double
 
+pub fn graph_bfs(WeightedGraph, Int) -> Array[Int]
+
+pub fn graph_clustering_coefficient(WeightedGraph, Int) -> Double
+
+pub fn graph_dfs(WeightedGraph, Int) -> Array[Int]
+
+pub fn group_window_ids(Array[Int], WindowSpec) -> Array[Int]
+
+pub fn hazard_table(KaplanMeier) -> Array[HazardEstimate]
+
+pub fn hellinger_distance(Array[Double], Array[Double]) -> Double
+
 pub fn histogram(Array[Double], Double, Double, Int) -> Array[Int]
+
+pub fn holt_linear_forecast(Array[Double], Double, Double, Int) -> Array[Double]
 
 pub fn impute_mean(Array[Double], (Double) -> Bool) -> Array[Double]
 
 pub fn impute_median(Array[Double], (Double) -> Bool) -> Array[Double]
 
+pub fn integrated_brier_score(Array[Double], Array[Bool], Array[Array[Double]], Array[Double]) -> Double
+
 pub fn interaction_matrix(Array[Double], Array[Double]) -> DenseMatrix
 
 pub fn interquartile_range(Array[Double]) -> Double
 
+pub fn interval_score(PredictionInterval, Double, Double) -> Double
+
+pub fn inverse_loss_weights(Array[EnsembleMember], Double) -> Array[EnsembleMember]
+
+pub fn inverse_probability_effect(Array[CausalObservation]) -> CausalEffect
+
+pub fn inverse_values(TransformParameters, Array[Double]) -> Array[Double]
+
+pub fn issue_summary(QualityReport) -> Array[(String, Int)]
+
+pub fn jackknife_bias(Array[Double], (Array[Double]) -> Double) -> Double
+
+pub fn jackknife_estimates(Array[Double], (Array[Double]) -> Double) -> Array[Double]
+
+pub fn js_divergence(Array[Double], Array[Double]) -> Double
+
+pub fn k_anonymity_satisfied(Array[Int], Int) -> Bool
+
+pub fn kl_divergence(Array[Double], Array[Double]) -> Double
+
+pub fn local_sensitivity(Array[Double], Double) -> Double
+
 pub fn log_loss(Array[Double], Array[Bool], epsilon? : Double) -> Double
 
+pub fn materialize(FeatureStore, String, Array[String], Int, Int) -> (FeatureStore, MaterializationJob)
+
 pub fn matrix_vector_distance(Array[Double], Array[Double]) -> Double
+
+pub fn maximum_calibration_error(Array[UncertaintyCalibrationBin]) -> Double
 
 pub fn mean(Array[Double]) -> Double
 
 pub fn mean_absolute_error(Array[Double], Array[Double]) -> Double
 
+pub fn mean_interval_score(Array[PredictionInterval], Array[Double], Double) -> Double
+
 pub fn median(Array[Double]) -> Double
 
 pub fn median_absolute_deviation(Array[Double]) -> Double
+
+pub fn mediation_decomposition(CausalEffect, CausalEffect) -> MediationResult
+
+pub fn merge_quality_reports(QualityReport, QualityReport) -> QualityReport
+
+pub fn metric_snapshot(Array[MetricStream]) -> Array[MonitorReport]
+
+pub fn monitor_drift(MetricStream, OnlineStats, Double) -> Bool
+
+pub fn monitor_outliers(MetricStream, Double) -> Array[MetricSample]
+
+pub fn monotonicity_report(String, Array[Double], Array[Double], Bool, Double) -> MonotonicityReport
 
 pub fn moving_average(Array[Double], Int) -> Array[Double]
 
 pub fn naive_forecast(Array[Double], Int) -> Array[ForecastPoint]
 
+pub fn noisy_count(Int, Double, Double, Double) -> PrivateRelease
+
+pub fn noisy_mean(Array[Double], Sensitivity, Double, Double) -> PrivateRelease
+
+pub fn noisy_proportion(Int, Int, Double, Double) -> PrivateRelease
+
+pub fn noisy_sum(Array[Double], Sensitivity, Double, Double) -> PrivateRelease
+
+pub fn normal_cdf(Double) -> Double
+
+pub fn normal_quantile(Double) -> Double
+
 pub fn normal_summary(Double, Double) -> DistributionSummary
 
+pub fn normalize_l1(Array[Double]) -> Array[Double]
+
+pub fn normalize_l2(Array[Double]) -> Array[Double]
+
 pub fn normalize_probabilities(Array[Double]) -> Array[Double]
+
+pub fn off_policy_value(Array[Double], Array[Int], Array[Double], Array[Double]) -> Double
 
 pub fn one_hot(Int, Int) -> Array[Double]
 
 pub fn one_hot_all(Array[Int], Int) -> Array[Array[Double]]
 
+pub fn optimize_threshold(Array[Double], Array[Bool], DecisionCost, Int) -> ThresholdReport
+
 pub fn outer_product(Array[Double], Array[Double]) -> DenseMatrix
 
+pub fn pagerank(WeightedGraph, Double, Int) -> Array[Double]
+
 pub fn pairwise_products(Array[Double]) -> Array[Double]
+
+pub fn partial_autocorrelation(Array[Double], Int) -> Double
+
+pub fn partial_dependence(Array[Array[Double]], Int, Array[Double]) -> Array[PartialDependencePoint]
 
 pub fn percentile_rank(Array[Double], Double) -> Double
 
 pub fn permutation_difference(DeterministicRng, Array[Double], Array[Double], Int) -> (DeterministicRng, Double)
 
+pub fn permutation_importance(Array[Double], Array[Double], Array[Array[Double]], Array[Array[Double]]) -> Array[FeatureAttribution]
+
+pub fn perplexity(Array[Double]) -> Double
+
+pub fn pipeline_success_rate(Array[PipelineRun]) -> Double
+
+pub fn plan_join(Array[String], Array[String], JoinType) -> Array[JoinRow]
+
 pub fn poisson_summary(Double) -> DistributionSummary
+
+pub fn policy_distribution(BanditContext, Double) -> Array[PolicyAction]
+
+pub fn policy_value(Array[CausalObservation], Array[Bool]) -> TreatmentPolicyValue
 
 pub fn polynomial_features(Array[Double], Int) -> Array[Double]
 
+pub fn posterior_predictive_check(Array[Double], Array[Array[Double]], (Array[Double]) -> Double) -> Double
+
+pub fn prediction_variance_decomposition(Array[Array[Double]]) -> (Double, Double)
+
+pub fn privacy_report(PrivacyBudget) -> PrivacyReport
+
+pub fn privacy_risk_score(Int, Int, Double) -> Double
+
+pub fn profile_numeric(String, Array[Double]) -> ColumnProfile
+
+pub fn profile_strings(String, Array[String]) -> ColumnProfile
+
+pub fn propensity_overlap(Array[CausalObservation]) -> Double
+
+pub fn quality_gate(QualityReport, Double) -> Bool
+
 pub fn quantile(Array[Double], Double) -> Double
+
+pub fn quantile_loss(Double, Double, Double) -> Double
+
+pub fn randomized_response(Bool, Double, Double) -> Bool
+
+pub fn rank_attributions(Array[FeatureAttribution]) -> Array[FeatureAttribution]
 
 pub fn rank_descending(Array[Double]) -> Array[Int]
 
@@ -117,13 +1689,61 @@ pub fn rank_features(Array[Array[Double]]) -> Array[Int]
 
 pub fn rank_models(Array[ModelScore]) -> Array[Int]
 
+pub fn rank_segments(Array[UpliftSegment]) -> Array[UpliftSegment]
+
+pub fn redact_numeric(Double, RedactionPolicy, Double) -> Double
+
+pub fn registry_health(Registry, Int) -> Double
+
+pub fn reliability_report(Array[Double], Array[Bool], Int) -> ReliabilityReport
+
+pub fn rmst_difference(KaplanMeier, KaplanMeier, Double) -> Double
+
+pub fn rolling_center(Array[Double], Int) -> Array[Double]
+
+pub fn rolling_iqr(Array[Double], Int) -> Array[Double]
+
+pub fn rolling_median(Array[Double], Int) -> Array[Double]
+
+pub fn rolling_quantile(Array[Double], Int, Double) -> Array[Double]
+
+pub fn rolling_scale(Array[Double], Int) -> Array[Double]
+
 pub fn rolling_z_scores(Array[Double], Int) -> Array[Double]
 
 pub fn root_mean_squared_error(Array[Double], Array[Double]) -> Double
 
+pub fn safe_divide(Array[Double], Array[Double], Double) -> Array[Double]
+
+pub fn sample_ratio_check(Int, Int, Double, Double) -> SampleRatioReport
+
+pub fn sample_size_for_proportion(Double, Double, Double, Double) -> Int
+
+pub fn schema_has_unique_key(DataSchema) -> Bool
+
+pub fn schema_quality(DataSchema) -> Double
+
+pub fn schema_required_coverage(DataSchema, Array[String]) -> Double
+
+pub fn seasonal_lag_features(Array[Double], Int, Int) -> Array[Array[Double]]
+
 pub fn seasonal_naive(Array[Double], Int, Int) -> Array[ForecastPoint]
 
+pub fn select_diverse_members(Array[EnsembleMember], Int) -> Array[EnsembleMember]
+
+pub fn select_epsilon_greedy(BanditContext, Double, Double) -> Int
+
 pub fn select_lowest_score(Array[ModelScore]) -> Int
+
+pub fn select_thompson(BanditContext, Array[Double]) -> Int
+
+pub fn select_ucb(BanditContext, Double) -> Int
+
+pub fn self_normalized_off_policy_value(Array[Double], Array[Double], Array[Double]) -> Double
+
+pub fn sensitivity_curve(CausalEffect, Array[Double]) -> Array[SensitivityCurve]
+
+pub fn sharpness(Array[Double]) -> Double
 
 pub fn shuffle(DeterministicRng, Array[Int]) -> (DeterministicRng, Array[Int])
 
@@ -135,11 +1755,57 @@ pub fn solve_lower(DenseMatrix, Array[Double]) -> Array[Double]
 
 pub fn solve_upper(DenseMatrix, Array[Double]) -> Array[Double]
 
+pub fn stacking_report(Array[EnsembleMember], EnsemblePrediction) -> StackingReport
+
+pub fn stage_failure_rate(Array[StageResult]) -> Double
+
+pub fn standardize_effect(CausalEffect, Double) -> CausalEffect
+
 pub fn standardized(Array[Double]) -> Array[Double]
+
+pub fn stratified_effect(Array[CausalObservation]) -> Array[StratumEffect]
+
+pub fn suggest_numeric_repairs(ColumnProfile, Double) -> Array[RepairPlan]
 
 pub fn sum(Array[Double]) -> Double
 
+pub fn summarize_missingness(Array[Array[Bool]]) -> MissingnessSummary
+
+pub fn suppress_small_groups(Array[Double], Array[Int], Int) -> Array[Double]
+
+pub fn threshold_report(Array[Double], Array[Bool], Double, DecisionCost) -> ThresholdReport
+
+pub fn throughput(Int, Int) -> Double
+
+pub fn total_variation(Array[Double], Array[Double]) -> Double
+
+pub fn transform_audit(Array[Double], Array[Double], Double, Double) -> TransformAudit
+
+pub fn transform_impute_mean(Array[Double]) -> (Array[Double], MissingValuePolicy)
+
+pub fn transform_impute_median(Array[Double]) -> (Array[Double], MissingValuePolicy)
+
+pub fn transform_one_hot(Array[Int], Int) -> Array[Array[Double]]
+
+pub fn transform_values(TransformParameters, Array[Double]) -> Array[Double]
+
+pub fn transform_winsorize(Array[Double], Double, Double) -> Array[Double]
+
+pub fn transition_log_likelihood(TransitionEstimate, Array[Int]) -> Double
+
+pub fn treatment_effect_by_stratum(Array[String], Array[Bool], Array[Double]) -> Array[UpliftSegment]
+
+pub fn treatment_on_treated(CausalEffect, Double) -> Double
+
 pub fn uniform_grid(Double, Double, Int) -> Array[Double]
+
+pub fn uplift_segment(String, Array[Double], Array[Double], Double) -> UpliftSegment
+
+pub fn utility_curve(Array[Double], Array[Bool], Double, Int) -> Array[UtilityCurvePoint]
+
+pub fn validate_row(DataSchema, Array[String], Array[String]) -> RowValidation
+
+pub fn value_of_information(Double, Double, Double) -> Double
 
 pub fn variance(Array[Double]) -> Double
 
@@ -147,13 +1813,165 @@ pub fn walk_forward_folds(Int, Int) -> Array[SplitResult]
 
 pub fn weighted_choice(DeterministicRng, Array[Double]) -> (DeterministicRng, Int)
 
+pub fn weighted_loss(Array[EnsembleMember]) -> Double
+
 pub fn weighted_mean(Array[Double], Array[Double]) -> Double
+
+pub fn weighted_quality_score(QualityReport, Array[Double]) -> Double
+
+pub fn window_aggregate(Array[Int], Array[Double], WindowSpec) -> Array[(Int, NumericAggregate)]
 
 pub fn winsorize(Array[Double], Double, Double) -> Array[Double]
 
 // Errors
 
 // Types and methods
+pub enum Action {
+  Reject
+  Review
+  Accept
+  Escalate
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct ActionRule {
+  lower : Double
+  upper : Double
+  action : Action
+  priority : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ActionRule::matches(Self, Double) -> Bool
+
+pub struct AlertEvaluator {
+  rule : AlertRule
+  streak : Int
+  events : Array[AlertEvent]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn AlertEvaluator::evaluate(Self, Int, Double) -> Self
+pub fn AlertEvaluator::events(Self) -> Array[AlertEvent]
+pub fn AlertEvaluator::is_active(Self) -> Bool
+pub fn AlertEvaluator::new(AlertRule) -> Self
+pub fn AlertEvaluator::reset(Self) -> Self
+pub fn AlertEvaluator::streak(Self) -> Int
+
+pub struct AlertEvent {
+  rule : String
+  timestamp : Int
+  value : Double
+  active : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn AlertEvent::active(Self) -> Bool
+pub fn AlertEvent::rule(Self) -> String
+pub fn AlertEvent::timestamp(Self) -> Int
+pub fn AlertEvent::value(Self) -> Double
+
+pub struct AlertRule {
+  name : String
+  comparator : Comparator
+  threshold : Double
+  tolerance : Double
+  consecutive : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn AlertRule::matches(Self, Double) -> Bool
+pub fn AlertRule::name(Self) -> String
+pub fn AlertRule::new(String, Comparator, Double) -> Self
+pub fn AlertRule::required_consecutive(Self) -> Int
+pub fn AlertRule::with_consecutive(Self, Int) -> Self
+pub fn AlertRule::with_tolerance(Self, Double) -> Self
+
+pub struct Approval {
+  reviewer : String
+  status : ApprovalStatus
+  comment : String
+  timestamp : Int
+  expires_at : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn Approval::approve(String, String, Int, Int) -> Self
+pub fn Approval::is_active(Self, Int) -> Bool
+
+pub enum ApprovalStatus {
+  Pending
+  Approved
+  Blocked
+  Expired
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum AssignmentMethod {
+  FixedRatio
+  EpsilonGreedy
+  Stratified
+  Blocked
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum AuditAction {
+  Registered
+  MetricUpdated
+  GateEvaluated
+  Approved
+  Deployed
+  Promoted
+  RolledBack
+  Archived
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct AuditEvent {
+  model_name : String
+  version : String
+  action : AuditAction
+  actor : String
+  timestamp : Int
+  details : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn AuditEvent::new(String, String, AuditAction, String, Int, String) -> Self
+
+pub struct BackpressurePolicy {
+  capacity : Int
+  drop_oldest : Bool
+  block_on_full : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn BackpressurePolicy::bounded(Int) -> Self
+pub fn BackpressurePolicy::lossy(Self) -> Self
+
+pub struct BalanceReport {
+  standardized_difference : Double
+  treated_mean : Double
+  control_mean : Double
+  treated_variance : Double
+  control_variance : Double
+  balanced : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct BanditArm {
+  name : String
+  pulls : Int
+  reward_sum : Double
+  reward_square_sum : Double
+  prior_mean : Double
+  prior_strength : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn BanditArm::mean(Self) -> Double
+pub fn BanditArm::new(String, Double, Double) -> Self
+pub fn BanditArm::observe(Self, Double) -> Self
+pub fn BanditArm::uncertainty(Self) -> Double
+pub fn BanditArm::variance(Self) -> Double
+
+pub struct BanditContext {
+  features : Array[Double]
+  arms : Array[BanditArm]
+  time : Int
+  total_reward : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn BanditContext::new(Array[BanditArm]) -> Self
+pub fn BanditContext::observe(Self, Int, Double) -> Self
+pub fn BanditContext::set_features(Self, Array[Double]) -> Self
+
+pub struct BanditEvaluation {
+  value : Double
+  standard_error : Double
+  lower_95 : Double
+  upper_95 : Double
+  effective_sample_size : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
 pub struct BanditPolicy {
   arms : Array[BetaArm]
   rounds : Int
@@ -187,6 +2005,17 @@ pub fn BayesianLinearRegression::predict_summary(Self, Array[Double]) -> Predict
 pub fn BayesianLinearRegression::predict_variance(Self, Array[Double]) -> Double
 pub fn BayesianLinearRegression::r_squared(Self, Array[Array[Double]], Array[Double]) -> Double
 pub fn BayesianLinearRegression::residuals(Self, Array[Array[Double]], Array[Double]) -> Array[Double]
+
+pub struct BernoulliDistribution {
+  probability : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn BernoulliDistribution::log_odds(Self) -> Double
+pub fn BernoulliDistribution::mean(Self) -> Double
+pub fn BernoulliDistribution::new(Double) -> Self
+pub fn BernoulliDistribution::pmf(Self, Bool) -> Double
+pub fn BernoulliDistribution::predictive(Self, Int) -> Array[Double]
+pub fn BernoulliDistribution::probability(Self) -> Double
+pub fn BernoulliDistribution::variance(Self) -> Double
 
 pub struct BetaArm {
   name : String
@@ -306,6 +2135,69 @@ pub fn CategoricalNaiveBayes::predict_scores(Self, Array[Int]) -> Array[Double]
 pub fn CategoricalNaiveBayes::update(Self, Int, Array[Int]) -> Self
 pub fn CategoricalNaiveBayes::vocabulary_size(Self) -> Int
 
+pub struct CausalEffect {
+  estimate : Double
+  standard_error : Double
+  lower_95 : Double
+  upper_95 : Double
+  treated : Int
+  control : Int
+  estimator : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn CausalEffect::significant(Self) -> Bool
+
+pub struct CausalObservation {
+  treatment : Bool
+  outcome : Double
+  propensity : Double
+  weight : Double
+  stratum : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn CausalObservation::new(Bool, Double, Double) -> Self
+pub fn CausalObservation::with_stratum(Self, String) -> Self
+
+pub struct ColumnProfile {
+  name : String
+  count : Int
+  missing : Int
+  distinct : Int
+  numeric : Bool
+  minimum : Double
+  maximum : Double
+  mean : Double
+  variance : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ColumnProfile::has_values(Self) -> Bool
+pub fn ColumnProfile::missing_rate(Self) -> Double
+pub fn ColumnProfile::null_rate(Self) -> Double
+pub fn ColumnProfile::observed(Self) -> Int
+pub fn ColumnProfile::range(Self) -> Double
+
+pub enum Comparator {
+  LessThan
+  LessOrEqual
+  GreaterThan
+  GreaterOrEqual
+  Equal
+  NotEqual
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct CompatibilityReport {
+  compatible : Bool
+  missing : Array[String]
+  type_changes : Array[String]
+  newly_required : Array[String]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct ConformalCalibrator {
+  residuals : Array[Double]
+  level : Double
+  quantile : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ConformalCalibrator::coverage(Self, Array[Double], Array[Double]) -> Double
+pub fn ConformalCalibrator::fit(Array[Double], Double) -> Self
+pub fn ConformalCalibrator::interval(Self, Double) -> PredictionInterval
+
 pub struct ConfusionMatrix {
   true_positive : Int
   true_negative : Int
@@ -329,6 +2221,31 @@ pub fn CountBatch::combine(Self, Self) -> Self
 pub fn CountBatch::new(Int, Int) -> Self
 pub fn CountBatch::rate(Self) -> Double
 
+pub struct CounterfactualResult {
+  original : Double
+  counterfactual : Double
+  change : Double
+  relative_change : Double
+  feasible : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct CovariateAdjustment {
+  raw_mean : Double
+  adjusted_mean : Double
+  coefficient : Double
+  covariate_mean : Double
+  variance_reduction : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct CoverageReport {
+  count : Int
+  covered : Int
+  coverage : Double
+  target : Double
+  error : Double
+  average_width : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
 pub struct CusumDetector {
   target : Double
   allowance : Double
@@ -344,6 +2261,21 @@ pub fn CusumDetector::new(Double, Double, Double) -> Self
 pub fn CusumDetector::positive_score(Self) -> Double
 pub fn CusumDetector::reset(Self) -> Self
 pub fn CusumDetector::update(Self, Double) -> Self
+
+pub struct DataSchema {
+  name : String
+  version : String
+  fields : Array[SchemaField]
+  primary_key : Array[String]
+  owner : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn DataSchema::add(Self, SchemaField) -> Self
+pub fn DataSchema::field(Self, String) -> SchemaField
+pub fn DataSchema::field_count(Self) -> Int
+pub fn DataSchema::fingerprint(Self) -> String
+pub fn DataSchema::key(Self, Array[String]) -> Self
+pub fn DataSchema::new(String, String) -> Self
+pub fn DataSchema::required_fields(Self) -> Array[String]
 
 pub struct Dataset {
   columns : Array[String]
@@ -379,6 +2311,32 @@ pub fn Dataset::to_matrix(Self) -> DenseMatrix
 pub fn Dataset::train_test_split(Self, Double) -> (Self, Self)
 pub fn Dataset::variance(Self, Int) -> Double
 
+pub struct DecisionConfusionMatrix {
+  true_positive : Int
+  false_positive : Int
+  true_negative : Int
+  false_negative : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct DecisionCost {
+  false_positive : Double
+  false_negative : Double
+  true_positive : Double
+  true_negative : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn DecisionCost::expected(Self, Array[Double], Array[Bool], Double) -> Double
+pub fn DecisionCost::new(Double, Double) -> Self
+
+pub struct DecisionLog {
+  id : String
+  score : Double
+  action : Action
+  threshold : Double
+  reason : String
+  timestamp : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn DecisionLog::new(String, Double, Action, Double, Int) -> Self
+
 pub struct DenseMatrix {
   rows : Int
   columns : Int
@@ -407,6 +2365,34 @@ pub fn DenseMatrix::trace(Self) -> Double
 pub fn DenseMatrix::transpose(Self) -> Self
 pub fn DenseMatrix::zeros(Int, Int) -> Self
 
+pub struct DeploymentRecord {
+  model_name : String
+  model_version : String
+  strategy : DeploymentStrategy
+  stage : ModelStage
+  traffic_percent : Double
+  replicas : Int
+  started_at : Int
+  ended_at : Int
+  rollback_version : String
+  approvals : Array[Approval]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn DeploymentRecord::add_approval(Self, Approval) -> Self
+pub fn DeploymentRecord::approved(Self, Int) -> Bool
+pub fn DeploymentRecord::is_complete(Self) -> Bool
+pub fn DeploymentRecord::new(String, String, DeploymentStrategy) -> Self
+pub fn DeploymentRecord::set_replicas(Self, Int) -> Self
+pub fn DeploymentRecord::set_traffic(Self, Double) -> Self
+pub fn DeploymentRecord::with_rollback(Self, String) -> Self
+
+pub enum DeploymentStrategy {
+  Shadow
+  Canary
+  BlueGreen
+  Rolling
+  Batch
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
 pub struct DeterministicRng {
   state : UInt64
 } derive(Eq, ToJson, @debug.Debug, @json.FromJson)
@@ -434,6 +2420,13 @@ pub fn DirichletMultinomial::total_concentration(Self) -> Double
 pub fn DirichletMultinomial::update(Self, Array[Int]) -> Self
 pub fn DirichletMultinomial::update_one(Self, Int) -> Self
 
+pub struct DisagreementReport {
+  mean_disagreement : Double
+  maximum_disagreement : Double
+  high_disagreement_points : Array[Int]
+  threshold : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
 pub enum DistributionKind {
   Bernoulli
   Count
@@ -456,6 +2449,79 @@ pub fn DistributionSummary::support_lower(Self) -> Double
 pub fn DistributionSummary::support_upper(Self) -> Double?
 pub fn DistributionSummary::variance(Self) -> Double
 
+pub struct EffectEstimate {
+  control : String
+  treatment : String
+  difference : Double
+  relative : Double
+  standard_error : Double
+  lower_95 : Double
+  upper_95 : Double
+  probability_positive : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn EffectEstimate::lift(Self) -> Double
+pub fn EffectEstimate::significant(Self) -> Bool
+
+pub struct EmpiricalDistribution {
+  values : Array[Double]
+  probabilities : Array[Double]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn EmpiricalDistribution::cdf(Self, Double) -> Double
+pub fn EmpiricalDistribution::entropy(Self) -> Double
+pub fn EmpiricalDistribution::map_values(Self, (Double) -> Double) -> Self
+pub fn EmpiricalDistribution::mean(Self) -> Double
+pub fn EmpiricalDistribution::mixture(Self, Self, Double) -> Self
+pub fn EmpiricalDistribution::new(Array[Double], Array[Double]) -> Self
+pub fn EmpiricalDistribution::probabilities(Self) -> Array[Double]
+pub fn EmpiricalDistribution::quantile(Self, Double) -> Double
+pub fn EmpiricalDistribution::standard_deviation(Self) -> Double
+pub fn EmpiricalDistribution::uniform(Array[Double]) -> Self
+pub fn EmpiricalDistribution::values(Self) -> Array[Double]
+pub fn EmpiricalDistribution::variance(Self) -> Double
+
+pub struct EncodingMap {
+  categories : Array[String]
+  unknown_code : Int
+  ordered : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn EncodingMap::decode(Self, Int) -> String
+pub fn EncodingMap::encode(Self, String) -> Int
+pub fn EncodingMap::encode_all(Self, Array[String]) -> Array[Int]
+pub fn EncodingMap::fit(Array[String], Bool) -> Self
+
+pub struct EnsembleMember {
+  name : String
+  predictions : Array[Double]
+  weight : Double
+  validation_loss : Double
+  active : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn EnsembleMember::disabled(Self) -> Self
+pub fn EnsembleMember::new(String, Array[Double]) -> Self
+pub fn EnsembleMember::with_loss(Self, Double) -> Self
+pub fn EnsembleMember::with_weight(Self, Double) -> Self
+
+pub enum EnsembleMode {
+  Mean
+  Median
+  Weighted
+  Trimmed
+  Voting
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct EnsemblePrediction {
+  values : Array[Double]
+  lower : Array[Double]
+  upper : Array[Double]
+  member_count : Int
+  disagreement : Array[Double]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum EventStatus {
+  Event
+  Censored
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
 pub struct EwmaDetector {
   decay : Double
   threshold : Double
@@ -470,6 +2536,31 @@ pub fn EwmaDetector::new(Double, Double) -> Self
 pub fn EwmaDetector::reset(Self) -> Self
 pub fn EwmaDetector::update(Self, Double) -> Self
 pub fn EwmaDetector::updates(Self) -> Int
+
+pub struct ExperimentArm {
+  name : String
+  observations : Int
+  successes : Int
+  sum : Double
+  sum_squared : Double
+  cost : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ExperimentArm::average_cost(Self) -> Double
+pub fn ExperimentArm::count(Self) -> Int
+pub fn ExperimentArm::mean(Self) -> Double
+pub fn ExperimentArm::new(String) -> Self
+pub fn ExperimentArm::rate(Self) -> Double
+pub fn ExperimentArm::record(Self, Double) -> Self
+pub fn ExperimentArm::record_cost(Self, Double, Double) -> Self
+pub fn ExperimentArm::standard_error(Self) -> Double
+pub fn ExperimentArm::variance(Self) -> Double
+
+pub struct ExperimentDecision {
+  winner : String
+  confidence : Double
+  stop : Bool
+  reason : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
 
 pub struct ExperimentLog {
   name : String
@@ -498,6 +2589,67 @@ pub fn ExperimentPoint::error(Self) -> Double
 pub fn ExperimentPoint::metric(Self) -> Double
 pub fn ExperimentPoint::step(Self) -> Int
 
+pub struct Explanation {
+  baseline : Double
+  prediction : Double
+  bias : Double
+  attributions : Array[FeatureAttribution]
+  residual : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn Explanation::new(Double, Double, Array[FeatureAttribution]) -> Self
+pub fn Explanation::positive_share(Self) -> Double
+pub fn Explanation::top(Self, Int) -> Array[FeatureAttribution]
+
+pub struct ExponentialDistribution {
+  rate : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ExponentialDistribution::cdf(Self, Double) -> Double
+pub fn ExponentialDistribution::hazard(Self, Double) -> Double
+pub fn ExponentialDistribution::mean(Self) -> Double
+pub fn ExponentialDistribution::new(Double) -> Self
+pub fn ExponentialDistribution::pdf(Self, Double) -> Double
+pub fn ExponentialDistribution::survival(Self, Double) -> Double
+pub fn ExponentialDistribution::variance(Self) -> Double
+
+pub struct ExponentialSurvival {
+  rate : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ExponentialSurvival::cdf(Self, Double) -> Double
+pub fn ExponentialSurvival::fit(Array[SurvivalObservation]) -> Self
+pub fn ExponentialSurvival::hazard(Self) -> Double
+pub fn ExponentialSurvival::mean(Self) -> Double
+pub fn ExponentialSurvival::median(Self) -> Double
+pub fn ExponentialSurvival::new(Double) -> Self
+pub fn ExponentialSurvival::quantile(Self, Double) -> Double
+pub fn ExponentialSurvival::rate(Self) -> Double
+pub fn ExponentialSurvival::survival(Self, Double) -> Double
+
+pub struct FairnessGap {
+  metric : String
+  maximum_gap : Double
+  reference : String
+  worst_group : String
+  passes : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct FairnessGroup {
+  name : String
+  count : Int
+  positive_rate : Double
+  selection_rate : Double
+  true_positive_rate : Double
+  false_positive_rate : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct FeatureAttribution {
+  feature : String
+  contribution : Double
+  absolute_contribution : Double
+  rank : Int
+  direction : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn FeatureAttribution::new(String, Double) -> Self
+
 pub struct FeatureColumn {
   name : String
   transform : FeatureTransform
@@ -514,6 +2666,49 @@ pub fn FeatureColumn::raw_values(Self) -> Array[Double]
 pub fn FeatureColumn::threshold(Self, Double) -> Self
 pub fn FeatureColumn::values(Self) -> Array[Double]
 
+pub struct FeatureDefinition {
+  name : String
+  kind : FeatureValueKind
+  entity : String
+  description : String
+  default_value : Double
+  ttl_seconds : Int
+  owner : String
+  tags : Array[String]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn FeatureDefinition::new(String, String, FeatureValueKind) -> Self
+pub fn FeatureDefinition::tagged(Self, String) -> Self
+pub fn FeatureDefinition::with_default(Self, Double) -> Self
+pub fn FeatureDefinition::with_ttl(Self, Int) -> Self
+
+pub struct FeatureDrift {
+  feature : String
+  baseline_mean : Double
+  current_mean : Double
+  standardized_shift : Double
+  population_stability : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct FeatureFreshness {
+  feature : String
+  score : Double
+  latest_event : Int
+  stale : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct FeatureObservation {
+  entity_id : String
+  feature : String
+  value : Double
+  event_time : Int
+  ingest_time : Int
+  source : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn FeatureObservation::age(Self, Int) -> Int
+pub fn FeatureObservation::is_late(Self) -> Bool
+pub fn FeatureObservation::new(String, String, Double, Int) -> Self
+pub fn FeatureObservation::with_ingest_time(Self, Int) -> Self
+
 pub struct FeaturePipeline {
   columns : Array[FeatureColumn]
   fitted : Bool
@@ -529,6 +2724,53 @@ pub fn FeaturePipeline::transform(Self) -> Dataset
 pub fn FeaturePipeline::transform_row(Self, Array[Double]) -> Array[Double]
 pub fn FeaturePipeline::with_column(Self, FeatureColumn) -> Self
 
+pub struct FeatureSignature {
+  name : String
+  data_type : String
+  required : Bool
+  default_value : String
+  minimum : Double
+  maximum : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn FeatureSignature::accepts(Self, Double) -> Bool
+pub fn FeatureSignature::is_bounded(Self) -> Bool
+
+pub struct FeatureSnapshot {
+  entity_id : String
+  as_of : Int
+  values : Array[(String, Double)]
+  missing : Array[String]
+  late_count : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn FeatureSnapshot::get(Self, String) -> Double
+pub fn FeatureSnapshot::has(Self, String) -> Bool
+pub fn FeatureSnapshot::new(String, Int) -> Self
+pub fn FeatureSnapshot::vector(Self, Array[FeatureDefinition]) -> Array[Double]
+
+pub struct FeatureStore {
+  definitions : Array[FeatureDefinition]
+  observations : Array[FeatureObservation]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn FeatureStore::batch_lookup(Self, Array[String], Array[String], Int) -> Array[FeatureSnapshot]
+pub fn FeatureStore::definition(Self, String) -> FeatureDefinition
+pub fn FeatureStore::freshness(Self, String, Int) -> Double
+pub fn FeatureStore::freshness_report(Self, Int) -> Array[FeatureFreshness]
+pub fn FeatureStore::lookup(Self, String, Array[String], Int) -> FeatureSnapshot
+pub fn FeatureStore::new() -> Self
+pub fn FeatureStore::observations_for(Self, String, String) -> Array[FeatureObservation]
+pub fn FeatureStore::register(Self, FeatureDefinition) -> Self
+pub fn FeatureStore::write(Self, FeatureObservation) -> Self
+pub fn FeatureStore::write_batch(Self, Array[FeatureObservation]) -> Self
+
+pub struct FeatureStoreHealth {
+  definitions : Int
+  observations : Int
+  missing_rate : Double
+  stale_rate : Double
+  drift_rate : Double
+  score : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
 pub enum FeatureTransform {
   Identity
   MinMax(lower~ : Double, upper~ : Double)
@@ -540,6 +2782,13 @@ pub fn FeatureTransform::apply(Self, Double) -> Double
 pub fn FeatureTransform::apply_all(Self, Array[Double]) -> Array[Double]
 pub fn FeatureTransform::inverse(Self, Double) -> Double
 
+pub enum FeatureValueKind {
+  Numeric
+  Boolean
+  Text
+  Vector
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
 pub struct ForecastPoint {
   step : Int
   value : Double
@@ -549,6 +2798,14 @@ pub struct ForecastPoint {
 pub fn ForecastPoint::interval(Self) -> (Double, Double)
 pub fn ForecastPoint::step(Self) -> Int
 pub fn ForecastPoint::value(Self) -> Double
+
+pub struct FreshnessWindow {
+  latest : Int
+  now : Int
+  maximum_age : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn FreshnessWindow::age(Self) -> Int
+pub fn FreshnessWindow::is_fresh(Self) -> Bool
 
 pub(all) struct GammaPoisson {
   shape : Double
@@ -568,6 +2825,15 @@ pub fn GammaPoisson::predictive_distribution(Self, Int) -> Array[Double]
 pub fn GammaPoisson::predictive_probability(Self, Int) -> Double
 pub fn GammaPoisson::summary(Self) -> DistributionSummary
 pub fn GammaPoisson::update(Self, Int, Int) -> Self
+
+pub struct GateResult {
+  gate : String
+  accepted : Bool
+  failed_checks : Array[String]
+  score : Double
+  error_rate : Double
+  drift : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
 
 pub struct GaussianClass {
   label : Int
@@ -599,6 +2865,229 @@ pub fn GaussianNaiveBayes::predict(Self, Array[Double]) -> Int
 pub fn GaussianNaiveBayes::predict_scores(Self, Array[Double]) -> Array[Double]
 pub fn GaussianNaiveBayes::update(Self, Int, Array[Double]) -> Self
 
+pub struct GeometricDistribution {
+  probability : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn GeometricDistribution::cdf(Self, Int) -> Double
+pub fn GeometricDistribution::mean(Self) -> Double
+pub fn GeometricDistribution::new(Double) -> Self
+pub fn GeometricDistribution::pmf(Self, Int) -> Double
+pub fn GeometricDistribution::quantile(Self, Double) -> Int
+pub fn GeometricDistribution::variance(Self) -> Double
+
+pub struct GraphEdge {
+  from : Int
+  to : Int
+  weight : Double
+  label : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn GraphEdge::new(Int, Int, Double) -> Self
+
+pub struct HazardEstimate {
+  time : Double
+  hazard : Double
+  lower : Double
+  upper : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn HazardEstimate::from_step(SurvivalStep) -> Self
+pub fn HazardEstimate::hazard(Self) -> Double
+pub fn HazardEstimate::lower(Self) -> Double
+pub fn HazardEstimate::time(Self) -> Double
+pub fn HazardEstimate::upper(Self) -> Double
+
+pub struct HistogramAccumulator {
+  lower : Double
+  upper : Double
+  buckets : Array[HistogramBucket]
+  total : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn HistogramAccumulator::add(Self, Double) -> Self
+pub fn HistogramAccumulator::add_all(Self, Array[Double]) -> Self
+pub fn HistogramAccumulator::cdf(Self) -> Array[Double]
+pub fn HistogramAccumulator::counts(Self) -> Array[Int]
+pub fn HistogramAccumulator::new(Double, Double, Int) -> Self
+pub fn HistogramAccumulator::total(Self) -> Int
+
+pub struct HistogramBucket {
+  lower : Double
+  upper : Double
+  count : Int
+  weight : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn HistogramBucket::add(Self, Double, Double) -> Self
+pub fn HistogramBucket::contains(Self, Double) -> Bool
+pub fn HistogramBucket::count(Self) -> Int
+pub fn HistogramBucket::midpoint(Self) -> Double
+pub fn HistogramBucket::new(Double, Double) -> Self
+pub fn HistogramBucket::weight(Self) -> Double
+
+pub enum IntervalMethod {
+  Gaussian
+  Empirical
+  Conformal
+  Bootstrap
+  Quantile
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct JoinRow {
+  key : String
+  left_index : Int
+  right_index : Int
+  matched : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum JoinType {
+  Inner
+  Left
+  Right
+  Full
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct KaplanMeier {
+  steps : Array[SurvivalStep]
+  observations : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn KaplanMeier::confidence_width(Self, Double) -> Double
+pub fn KaplanMeier::failure_at(Self, Double) -> Double
+pub fn KaplanMeier::fit(Array[SurvivalObservation]) -> Self
+pub fn KaplanMeier::hazard_at(Self, Double) -> Double
+pub fn KaplanMeier::median_survival(Self) -> Double
+pub fn KaplanMeier::observations(Self) -> Int
+pub fn KaplanMeier::quantile(Self, Double) -> Double
+pub fn KaplanMeier::restricted_mean(Self, Double) -> Double
+pub fn KaplanMeier::steps(Self) -> Array[SurvivalStep]
+pub fn KaplanMeier::survival_at(Self, Double) -> Double
+
+pub struct LifeTable {
+  intervals : Array[Double]
+  exposed : Array[Double]
+  deaths : Array[Double]
+  survival : Array[Double]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn LifeTable::hazard_at(Self, Int) -> Double
+pub fn LifeTable::intervals(Self) -> Array[Double]
+pub fn LifeTable::new(Array[Double]) -> Self
+pub fn LifeTable::record(Self, Int, Double, Double) -> Self
+pub fn LifeTable::survival_at(Self, Int) -> Double
+pub fn LifeTable::survival_curve(Self) -> Array[Double]
+pub fn LifeTable::total_deaths(Self) -> Double
+pub fn LifeTable::total_exposure(Self) -> Double
+
+pub struct MarkovChain {
+  states : Int
+  transition : Array[Array[Double]]
+  initial : Array[Double]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn MarkovChain::distribution(Self, Int) -> Array[Double]
+pub fn MarkovChain::expected_state(Self, Array[Double], Int) -> Double
+pub fn MarkovChain::new(Array[Array[Double]], Array[Double]) -> Self
+pub fn MarkovChain::stationary(Self, Int) -> Array[Double]
+pub fn MarkovChain::step(Self, Array[Double]) -> Array[Double]
+
+pub struct MaterializationJob {
+  feature : String
+  mode : MaterializationMode
+  start_time : Int
+  end_time : Int
+  rows_written : Int
+  status : PipelineStatus
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn MaterializationJob::complete(Self, Int) -> Self
+pub fn MaterializationJob::fail(Self) -> Self
+pub fn MaterializationJob::new(String, MaterializationMode, Int, Int) -> Self
+
+pub enum MaterializationMode {
+  Online
+  Offline
+  Hybrid
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct MediationResult {
+  total_effect : Double
+  direct_effect : Double
+  indirect_effect : Double
+  mediated_fraction : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum MetricKind {
+  Gauge
+  Counter
+  Rate
+  Histogram
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct MetricSample {
+  timestamp : Int
+  value : Double
+  weight : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn MetricSample::new(Int, Double) -> Self
+pub fn MetricSample::timestamp(Self) -> Int
+pub fn MetricSample::value(Self) -> Double
+pub fn MetricSample::weight(Self) -> Double
+pub fn MetricSample::weighted(Int, Double, Double) -> Self
+
+pub struct MetricStream {
+  name : String
+  kind : MetricKind
+  samples : Array[MetricSample]
+  total : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn MetricStream::change(Self) -> Double
+pub fn MetricStream::first(Self) -> Double
+pub fn MetricStream::histogram(Self, Double, Double, Int) -> Array[Int]
+pub fn MetricStream::kind(Self) -> MetricKind
+pub fn MetricStream::latest(Self) -> Double
+pub fn MetricStream::len(Self) -> Int
+pub fn MetricStream::name(Self) -> String
+pub fn MetricStream::new(String, MetricKind) -> Self
+pub fn MetricStream::push(Self, MetricSample) -> Self
+pub fn MetricStream::push_all(Self, Array[MetricSample]) -> Self
+pub fn MetricStream::push_value(Self, Int, Double) -> Self
+pub fn MetricStream::quantile(Self, Double) -> Double
+pub fn MetricStream::rate(Self, Double) -> Double
+pub fn MetricStream::samples(Self) -> Array[MetricSample]
+pub fn MetricStream::summary(Self) -> OnlineStats
+pub fn MetricStream::values(Self) -> Array[Double]
+pub fn MetricStream::weighted_mean(Self) -> Double
+pub fn MetricStream::window(Self, Int, Int) -> Self
+
+pub enum MigrationAction {
+  AddField
+  RemoveField
+  RenameField
+  CastField
+  SetDefault
+  RelaxConstraint
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct MissingValuePolicy {
+  fill : Double
+  lower : Double
+  upper : Double
+  dropped : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct MissingnessSummary {
+  columns : Int
+  rows : Int
+  total_missing : Int
+  complete_rows : Int
+  all_missing_columns : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn MissingnessSummary::complete_rate(Self) -> Double
+pub fn MissingnessSummary::missing_rate(Self) -> Double
+
+pub struct ModelMetric {
+  name : String
+  value : Double
+  threshold : Double
+  higher_is_better : Bool
+  validation_set : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ModelMetric::margin(Self) -> Double
+pub fn ModelMetric::passes(Self) -> Bool
+
 pub struct ModelScore {
   name : String
   score : Double
@@ -608,6 +3097,83 @@ pub fn ModelScore::complexity(Self) -> Int
 pub fn ModelScore::name(Self) -> String
 pub fn ModelScore::new(String, Double, Int) -> Self
 pub fn ModelScore::score(Self) -> Double
+
+pub enum ModelStage {
+  Draft
+  Validating
+  Staging
+  Production
+  Archived
+  Rejected
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct ModelVersion {
+  name : String
+  version : String
+  artifact_uri : String
+  source_revision : String
+  created_at : Int
+  stage : ModelStage
+  metrics : Array[ModelMetric]
+  features : Array[FeatureSignature]
+  tags : Array[String]
+  owner : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ModelVersion::add_feature(Self, FeatureSignature) -> Self
+pub fn ModelVersion::add_metric(Self, ModelMetric) -> Self
+pub fn ModelVersion::add_tag(Self, String) -> Self
+pub fn ModelVersion::all_metrics_pass(Self) -> Bool
+pub fn ModelVersion::feature_count(Self) -> Int
+pub fn ModelVersion::is_deployable(Self) -> Bool
+pub fn ModelVersion::metric(Self, String) -> Double
+pub fn ModelVersion::new(String, String, String) -> Self
+pub fn ModelVersion::required_features(Self) -> Array[String]
+pub fn ModelVersion::with_owner(Self, String) -> Self
+pub fn ModelVersion::with_revision(Self, String, Int) -> Self
+
+pub struct MonitorReport {
+  name : String
+  count : Int
+  mean : Double
+  deviation : Double
+  latest : Double
+  min : Double
+  max : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn MonitorReport::count(Self) -> Int
+pub fn MonitorReport::deviation(Self) -> Double
+pub fn MonitorReport::from_stream(MetricStream) -> Self
+pub fn MonitorReport::latest(Self) -> Double
+pub fn MonitorReport::max(Self) -> Double
+pub fn MonitorReport::mean(Self) -> Double
+pub fn MonitorReport::min(Self) -> Double
+pub fn MonitorReport::name(Self) -> String
+pub fn MonitorReport::z_score(Self) -> Double
+
+pub struct MonotonicityReport {
+  feature : String
+  violations : Int
+  pairs : Int
+  violation_rate : Double
+  monotonic : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum MultipleTestingMethod {
+  Bonferroni
+  Holm
+  BenjaminiHochberg
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct NegativeBinomialDistribution {
+  successes : Int
+  probability : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn NegativeBinomialDistribution::cdf(Self, Int) -> Double
+pub fn NegativeBinomialDistribution::mean(Self) -> Double
+pub fn NegativeBinomialDistribution::new(Int, Double) -> Self
+pub fn NegativeBinomialDistribution::pmf(Self, Int) -> Double
+pub fn NegativeBinomialDistribution::quantile(Self, Double) -> Int
+pub fn NegativeBinomialDistribution::variance(Self) -> Double
 
 pub struct NormalInverseGamma {
   mean : Double
@@ -649,6 +3215,17 @@ pub fn NormalNormal::precision(Self) -> Double
 pub fn NormalNormal::standardized(Self, Double) -> Double
 pub fn NormalNormal::summary(Self) -> DistributionSummary
 pub fn NormalNormal::update(Self, Double, Int) -> Self
+
+pub struct NumericAggregate {
+  count : Int
+  sum : Double
+  minimum : Double
+  maximum : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn NumericAggregate::mean(Self) -> Double
+pub fn NumericAggregate::new() -> Self
+pub fn NumericAggregate::push(Self, Double) -> Self
+pub fn NumericAggregate::range(Self) -> Double
 
 pub(all) enum Observation {
   Binary(successes~ : Int, trials~ : Int)
@@ -695,6 +3272,102 @@ pub fn OnlineStats::standard_deviation(Self) -> Double
 pub fn OnlineStats::sum(Self) -> Double
 pub fn OnlineStats::variance(Self) -> Double
 
+pub struct PartialDependencePoint {
+  feature_value : Double
+  average_prediction : Double
+  lower : Double
+  upper : Double
+  samples : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct PipelinePlan {
+  name : String
+  version : String
+  stages : Array[PipelineStage]
+  schedule : Array[String]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn PipelinePlan::add(Self, PipelineStage) -> Self
+pub fn PipelinePlan::new(String, String) -> Self
+pub fn PipelinePlan::stage(Self, String) -> PipelineStage
+pub fn PipelinePlan::topological_order(Self) -> Array[String]
+pub fn PipelinePlan::validate(Self) -> Array[String]
+
+pub struct PipelineRun {
+  pipeline : String
+  run_id : String
+  status : PipelineStatus
+  results : Array[StageResult]
+  started_at : Int
+  ended_at : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn PipelineRun::duration(Self) -> Int
+pub fn PipelineRun::failed(Self) -> Bool
+pub fn PipelineRun::finish(Self, Int) -> Self
+pub fn PipelineRun::new(String, String, Int) -> Self
+pub fn PipelineRun::record(Self, StageResult) -> Self
+pub fn PipelineRun::row_counts(Self) -> Array[(String, Int, Int)]
+pub fn PipelineRun::total_input(Self) -> Int
+pub fn PipelineRun::total_output(Self) -> Int
+
+pub struct PipelineStage {
+  name : String
+  kind : StageKind
+  dependencies : Array[String]
+  retries : Int
+  timeout_ms : Int
+  enabled : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn PipelineStage::depends_on(Self, String) -> Self
+pub fn PipelineStage::disabled(Self) -> Self
+pub fn PipelineStage::new(String, StageKind) -> Self
+pub fn PipelineStage::with_retries(Self, Int) -> Self
+pub fn PipelineStage::with_timeout(Self, Int) -> Self
+
+pub enum PipelineStatus {
+  Pending
+  Running
+  Succeeded
+  Failed
+  Skipped
+  Cancelled
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct PoissonDistribution {
+  rate : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn PoissonDistribution::cdf(Self, Int) -> Double
+pub fn PoissonDistribution::mean(Self) -> Double
+pub fn PoissonDistribution::new(Double) -> Self
+pub fn PoissonDistribution::pmf(Self, Int) -> Double
+pub fn PoissonDistribution::tail(Self, Int) -> Double
+pub fn PoissonDistribution::variance(Self) -> Double
+
+pub struct PolicyAction {
+  arm : Int
+  probability : Double
+  expected_reward : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct PowerEstimate {
+  effect : Double
+  alpha : Double
+  power : Double
+  required_per_arm : Int
+  achieved_power : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct PredictionInterval {
+  prediction : Double
+  lower : Double
+  upper : Double
+  confidence : Double
+  interval_method : IntervalMethod
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn PredictionInterval::contains(Self, Double) -> Bool
+pub fn PredictionInterval::new(Double, Double, Double, Double, IntervalMethod) -> Self
+pub fn PredictionInterval::relative_width(Self) -> Double
+pub fn PredictionInterval::width(Self) -> Double
+
 pub struct PredictiveSummary {
   mean : Double
   variance : Double
@@ -706,6 +3379,126 @@ pub fn PredictiveSummary::mean(Self) -> Double
 pub fn PredictiveSummary::new(Double, Double, Double, Double) -> Self
 pub fn PredictiveSummary::standard_deviation(Self) -> Double
 pub fn PredictiveSummary::variance(Self) -> Double
+
+pub struct PrivacyBudget {
+  epsilon : Double
+  delta : Double
+  consumed_epsilon : Double
+  consumed_delta : Double
+  releases : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn PrivacyBudget::can_spend(Self, Double, Double) -> Bool
+pub fn PrivacyBudget::new(Double, Double) -> Self
+pub fn PrivacyBudget::remaining_delta(Self) -> Double
+pub fn PrivacyBudget::remaining_epsilon(Self) -> Double
+pub fn PrivacyBudget::spend(Self, Double, Double) -> Self
+
+pub enum PrivacyMechanism {
+  Laplace
+  Gaussian
+  RandomizedResponse
+  Exponential
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct PrivacyReport {
+  releases : Int
+  epsilon : Double
+  delta : Double
+  consumed_epsilon : Double
+  consumed_delta : Double
+  utilization : Double
+  exhausted : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct PrivateRelease {
+  value : Double
+  mechanism : PrivacyMechanism
+  epsilon : Double
+  delta : Double
+  scale : Double
+  clipped : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct QualityIssue {
+  rule : String
+  column : String
+  severity : QualitySeverity
+  row : Int
+  value : String
+  message : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn QualityIssue::is_blocking(Self) -> Bool
+pub fn QualityIssue::new(String, String, QualitySeverity, Int, String, String) -> Self
+
+pub struct QualityReport {
+  dataset : String
+  rows : Int
+  columns : Int
+  checked_rules : Int
+  passed_rules : Int
+  issues : Array[QualityIssue]
+  profiles : Array[ColumnProfile]
+  score : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn QualityReport::error_count(Self) -> Int
+pub fn QualityReport::has_errors(Self) -> Bool
+pub fn QualityReport::issue_count(Self) -> Int
+pub fn QualityReport::issues(Self) -> Array[QualityIssue]
+pub fn QualityReport::new(String, Int) -> Self
+pub fn QualityReport::pass_rate(Self) -> Double
+pub fn QualityReport::profiles(Self) -> Array[ColumnProfile]
+pub fn QualityReport::quality_score(Self) -> Double
+pub fn QualityReport::warning_count(Self) -> Int
+
+pub enum QualityRuleKind {
+  Required
+  NumericRange
+  StringLength
+  AllowedValues
+  Unique
+  Monotonic
+  Freshness
+  Cardinality
+  DistributionDrift
+  NullRate
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum QualitySeverity {
+  Info
+  Warning
+  Error
+  Critical
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct QuantileLoss {
+  quantile : Double
+  mean_loss : Double
+  observations : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum RedactionPolicy {
+  Suppress
+  Bucket
+  Round
+  Hash
+  Keep
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct Registry {
+  models : Array[ModelVersion]
+  deployments : Array[DeploymentRecord]
+  audit : Array[AuditEvent]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn Registry::audit_for(Self, String) -> Array[AuditEvent]
+pub fn Registry::deploy(Self, DeploymentRecord, String, Int) -> Self
+pub fn Registry::find(Self, String, String) -> ModelVersion
+pub fn Registry::latest(Self, String) -> ModelVersion
+pub fn Registry::new() -> Self
+pub fn Registry::production(Self, String) -> Array[ModelVersion]
+pub fn Registry::promote(Self, String, String, ModelStage, ValidationGate, Double, Double, Double, String, Int) -> (Self, GateResult)
+pub fn Registry::register(Self, ModelVersion, String, Int) -> Self
+pub fn Registry::rollback(Self, String, String, String, String, Int) -> Self
+pub fn Registry::versions(Self, String) -> Array[ModelVersion]
 
 pub struct RegressionReport {
   count : Int
@@ -719,6 +3512,53 @@ pub fn RegressionReport::count(Self) -> Int
 pub fn RegressionReport::from_predictions(Array[Double], Array[Double]) -> Self
 pub fn RegressionReport::mae(Self) -> Double
 pub fn RegressionReport::rmse(Self) -> Double
+
+pub struct RegretLedger {
+  points : Array[RegretPoint]
+  cumulative : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn RegretLedger::average_regret(Self) -> Double
+pub fn RegretLedger::max_drawdown(Self) -> Double
+pub fn RegretLedger::new() -> Self
+pub fn RegretLedger::record(Self, Int, Double, Array[Double]) -> Self
+
+pub struct RegretPoint {
+  time : Int
+  chosen : Int
+  reward : Double
+  best_expected : Double
+  instantaneous : Double
+  cumulative : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct ReliabilityReport {
+  brier : Double
+  log_loss : Double
+  ece : Double
+  mce : Double
+  resolution : Double
+  refinement : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum RepairAction {
+  ImputeMean
+  ImputeMedian
+  ImputeConstant
+  DropRow
+  DropColumn
+  ClipRange
+  Deduplicate
+  Reject
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct RepairPlan {
+  column : String
+  action : RepairAction
+  parameter : Double
+  affected_rows : Int
+  rationale : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn RepairPlan::is_lossy(Self) -> Bool
 
 pub struct RollingWindow {
   capacity : Int
@@ -741,6 +3581,123 @@ pub fn RollingWindow::trend(Self) -> Double
 pub fn RollingWindow::values(Self) -> Array[Double]
 pub fn RollingWindow::variance(Self) -> Double
 
+pub struct RowValidation {
+  valid : Bool
+  missing_required : Array[String]
+  unknown_fields : Array[String]
+  type_errors : Array[String]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct SampleRatioReport {
+  expected_treatment : Double
+  observed_treatment : Double
+  z_score : Double
+  p_value : Double
+  suspicious : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct SchemaChange {
+  field : String
+  breaking : Bool
+  description : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct SchemaCompatibility {
+  compatible : Bool
+  changes : Array[SchemaChange]
+  added : Int
+  removed : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct SchemaField {
+  name : String
+  kind : SchemaType
+  required : Bool
+  nullable : Bool
+  repeated : Bool
+  description : String
+  tags : Array[String]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn SchemaField::array(Self) -> Self
+pub fn SchemaField::new(String, SchemaType) -> Self
+pub fn SchemaField::optional(Self) -> Self
+pub fn SchemaField::required(Self) -> Self
+pub fn SchemaField::tag(Self, String) -> Self
+
+pub struct SchemaMigration {
+  from_version : String
+  to_version : String
+  action : MigrationAction
+  field : String
+  target : String
+  reversible : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum SchemaType {
+  Integer
+  Number
+  Boolean
+  String
+  Timestamp
+  Array
+  Object
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum Seasonality {
+  None
+  Additive(period~ : Int)
+  Multiplicative(period~ : Int)
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct Sensitivity {
+  lower : Double
+  upper : Double
+  adjacency : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn Sensitivity::mean_sensitivity(Self, Int) -> Double
+pub fn Sensitivity::new(Double, Double, Double) -> Self
+pub fn Sensitivity::range(Self) -> Double
+
+pub struct SensitivityCurve {
+  bias_factor : Double
+  adjusted_effect : Double
+  adjusted_lower : Double
+  adjusted_upper : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct SequentialBoundary {
+  looks : Int
+  alpha : Double
+  spending : Array[Double]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn SequentialBoundary::can_stop(Self, EffectEstimate, Int) -> Bool
+pub fn SequentialBoundary::critical_z(Self, Int) -> Double
+pub fn SequentialBoundary::new(Int, Double) -> Self
+
+pub struct ShortestPath {
+  distance : Double
+  nodes : Array[Int]
+  reachable : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct SloTarget {
+  name : String
+  target : Double
+  window : Int
+  good : Int
+  total : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn SloTarget::attainment(Self) -> Double
+pub fn SloTarget::error_budget(Self) -> Double
+pub fn SloTarget::good(Self) -> Int
+pub fn SloTarget::is_met(Self) -> Bool
+pub fn SloTarget::name(Self) -> String
+pub fn SloTarget::new(String, Double, Int) -> Self
+pub fn SloTarget::record(Self, Bool) -> Self
+pub fn SloTarget::remaining_budget(Self) -> Int
+pub fn SloTarget::target(Self) -> Double
+pub fn SloTarget::total(Self) -> Int
+
 pub struct SplitResult {
   train_indices : Array[Int]
   test_indices : Array[Int]
@@ -749,6 +3706,208 @@ pub fn SplitResult::test_indices(Self) -> Array[Int]
 pub fn SplitResult::test_size(Self) -> Int
 pub fn SplitResult::train_indices(Self) -> Array[Int]
 pub fn SplitResult::train_size(Self) -> Int
+
+pub struct StackingReport {
+  member_count : Int
+  training_loss : Double
+  weighted_loss : Double
+  diversity : Double
+  selected : Array[String]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum StageKind {
+  Source
+  Map
+  Filter
+  Join
+  Aggregate
+  Window
+  Sink
+  Validate
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct StageResult {
+  name : String
+  status : PipelineStatus
+  input_rows : Int
+  output_rows : Int
+  duration_ms : Int
+  attempts : Int
+  error : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn StageResult::failure(String, Int, Int, Int, String) -> Self
+pub fn StageResult::selectivity(Self) -> Double
+pub fn StageResult::success(String, Int, Int, Int, Int) -> Self
+
+pub struct StratumEffect {
+  stratum : String
+  effect : CausalEffect
+  weight : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct SurvivalObservation {
+  duration : Double
+  status : EventStatus
+  weight : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn SurvivalObservation::duration(Self) -> Double
+pub fn SurvivalObservation::new(Double, EventStatus) -> Self
+pub fn SurvivalObservation::status(Self) -> EventStatus
+pub fn SurvivalObservation::weight(Self) -> Double
+pub fn SurvivalObservation::weighted(Double, EventStatus, Double) -> Self
+
+pub struct SurvivalStep {
+  time : Double
+  at_risk : Double
+  events : Double
+  censored : Double
+  survival : Double
+  hazard : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn SurvivalStep::at_risk(Self) -> Double
+pub fn SurvivalStep::censored(Self) -> Double
+pub fn SurvivalStep::events(Self) -> Double
+pub fn SurvivalStep::hazard(Self) -> Double
+pub fn SurvivalStep::survival(Self) -> Double
+pub fn SurvivalStep::time(Self) -> Double
+
+pub struct ThresholdReport {
+  threshold : Double
+  expected_cost : Double
+  accuracy : Double
+  precision : Double
+  recall : Double
+  f1 : Double
+  selected_rate : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct TimeSeries {
+  timestamps : Array[Int]
+  values : Array[Double]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn TimeSeries::append(Self, Int, Double) -> Self
+pub fn TimeSeries::at(Self, Int) -> Double
+pub fn TimeSeries::difference(Self, Int) -> Self
+pub fn TimeSeries::filter(Self, (Int, Double) -> Bool) -> Self
+pub fn TimeSeries::from_values(Array[Double]) -> Self
+pub fn TimeSeries::is_empty(Self) -> Bool
+pub fn TimeSeries::lag(Self, Int) -> Self
+pub fn TimeSeries::len(Self) -> Int
+pub fn TimeSeries::map(Self, (Double) -> Double) -> Self
+pub fn TimeSeries::map_indexed(Self, (Int, Double) -> Double) -> Self
+pub fn TimeSeries::new(Array[Int], Array[Double]) -> Self
+pub fn TimeSeries::normalize(Self) -> Self
+pub fn TimeSeries::percentage_change(Self, Int) -> Self
+pub fn TimeSeries::resample_mean(Self, Int) -> Self
+pub fn TimeSeries::resample_sum(Self, Int) -> Self
+pub fn TimeSeries::rolling(Self, Int, (Array[Double]) -> Double) -> Self
+pub fn TimeSeries::rolling_max(Self, Int) -> Self
+pub fn TimeSeries::rolling_mean(Self, Int) -> Self
+pub fn TimeSeries::rolling_min(Self, Int) -> Self
+pub fn TimeSeries::rolling_variance(Self, Int) -> Self
+pub fn TimeSeries::seasonal_average(Self, Int) -> Array[Double]
+pub fn TimeSeries::slice(Self, Int, Int) -> Self
+pub fn TimeSeries::standardize(Self) -> Self
+pub fn TimeSeries::timestamp_at(Self, Int) -> Int
+pub fn TimeSeries::timestamps(Self) -> Array[Int]
+pub fn TimeSeries::trend(Self) -> Double
+pub fn TimeSeries::values(Self) -> Array[Double]
+
+pub struct TransformAudit {
+  rows : Int
+  missing_before : Int
+  missing_after : Int
+  clipped : Int
+  mean_before : Double
+  mean_after : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub enum TransformKind {
+  Identity
+  Standardize
+  MinMax
+  Robust
+  Log1p
+  Clip
+  Quantile
+  Rank
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct TransformParameters {
+  kind : TransformKind
+  center : Double
+  scale : Double
+  lower : Double
+  upper : Double
+  fitted_count : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn TransformParameters::apply(Self, Double) -> Double
+pub fn TransformParameters::fit_clip(Array[Double], Double, Double) -> Self
+pub fn TransformParameters::fit_minmax(Array[Double], Double, Double) -> Self
+pub fn TransformParameters::fit_robust(Array[Double]) -> Self
+pub fn TransformParameters::fit_standard(Array[Double]) -> Self
+pub fn TransformParameters::identity() -> Self
+pub fn TransformParameters::inverse(Self, Double) -> Double
+
+pub struct TransformPipeline {
+  parameters : Array[TransformParameters]
+  names : Array[String]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn TransformPipeline::add(Self, String, TransformParameters) -> Self
+pub fn TransformPipeline::apply(Self, Array[Double]) -> Array[Double]
+pub fn TransformPipeline::inverse(Self, Array[Double]) -> Array[Double]
+pub fn TransformPipeline::new() -> Self
+
+pub struct TransitionEstimate {
+  counts : Array[Array[Int]]
+  probabilities : Array[Array[Double]]
+  smoothing : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct TreatmentPolicyValue {
+  treated_value : Double
+  control_value : Double
+  policy_value : Double
+  treatment_rate : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct TrendEstimate {
+  slope : Double
+  intercept : Double
+  r_squared : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn TrendEstimate::intercept(Self) -> Double
+pub fn TrendEstimate::new(Double, Double, Double) -> Self
+pub fn TrendEstimate::predict(Self, Double) -> Double
+pub fn TrendEstimate::r_squared(Self) -> Double
+pub fn TrendEstimate::slope(Self) -> Double
+
+pub struct UncertaintyBootstrapSummary {
+  estimate : Double
+  standard_error : Double
+  lower : Double
+  upper : Double
+  samples : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct UncertaintyCalibrationBin {
+  lower : Double
+  upper : Double
+  count : Int
+  predicted_mean : Double
+  observed_rate : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct UniformDistribution {
+  lower : Double
+  upper : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn UniformDistribution::cdf(Self, Double) -> Double
+pub fn UniformDistribution::clamp(Self, Double) -> Double
+pub fn UniformDistribution::mean(Self) -> Double
+pub fn UniformDistribution::new(Double, Double) -> Self
+pub fn UniformDistribution::pdf(Self, Double) -> Double
+pub fn UniformDistribution::variance(Self) -> Double
 
 pub struct UpdateLedger {
   observations : Array[Observation]
@@ -766,6 +3925,80 @@ pub fn UpdateLedger::new(BetaBinomial, GammaPoisson, NormalNormal, DirichletMult
 pub fn UpdateLedger::observations(Self) -> Array[Observation]
 pub fn UpdateLedger::push(Self, Observation) -> Self
 pub fn UpdateLedger::push_all(Self, Array[Observation]) -> Self
+
+pub struct UpliftSegment {
+  label : String
+  count : Int
+  treatment_mean : Double
+  control_mean : Double
+  uplift : Double
+  standard_error : Double
+  priority : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct UtilityCurvePoint {
+  threshold : Double
+  net_benefit : Double
+  treated : Int
+  true_positives : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct ValidationGate {
+  name : String
+  required_metrics : Array[String]
+  minimum_score : Double
+  maximum_error_rate : Double
+  maximum_drift : Double
+  require_revision : Bool
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ValidationGate::accepts(Self, ModelVersion, Double, Double, Double) -> Bool
+pub fn ValidationGate::production() -> Self
+
+pub struct WeibullSurvival {
+  shape : Double
+  scale : Double
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn WeibullSurvival::cdf(Self, Double) -> Double
+pub fn WeibullSurvival::hazard(Self, Double) -> Double
+pub fn WeibullSurvival::new(Double, Double) -> Self
+pub fn WeibullSurvival::quantile(Self, Double) -> Double
+pub fn WeibullSurvival::scale(Self) -> Double
+pub fn WeibullSurvival::shape(Self) -> Double
+pub fn WeibullSurvival::survival(Self, Double) -> Double
+
+pub struct WeightFit {
+  weights : Array[Double]
+  intercept : Double
+  training_loss : Double
+  iterations : Int
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct WeightedGraph {
+  nodes : Int
+  directed : Bool
+  edges : Array[GraphEdge]
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn WeightedGraph::add_edge(Self, GraphEdge) -> Self
+pub fn WeightedGraph::adjacency_matrix(Self) -> Array[Array[Double]]
+pub fn WeightedGraph::degree(Self, Int) -> Int
+pub fn WeightedGraph::edge_count(Self) -> Int
+pub fn WeightedGraph::has_edge(Self, Int, Int) -> Bool
+pub fn WeightedGraph::incoming(Self, Int) -> Array[(Int, Double)]
+pub fn WeightedGraph::neighbors(Self, Int) -> Array[(Int, Double)]
+pub fn WeightedGraph::new(Int, Bool) -> Self
+pub fn WeightedGraph::outgoing_weight(Self, Int) -> Double
+pub fn WeightedGraph::total_weight(Self) -> Double
+
+pub struct WindowSpec {
+  size : Int
+  slide : Int
+  offset : Int
+  timestamp_column : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn WindowSpec::sliding(Int, Int) -> Self
+pub fn WindowSpec::tumbling(Int) -> Self
+pub fn WindowSpec::window_id(Self, Int) -> Int
+pub fn WindowSpec::with_offset(Self, Int) -> Self
 
 // Type aliases
 
