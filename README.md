@@ -1,30 +1,35 @@
 # moon-bayes-kit
 
+## Project positioning
+
 Composable Bayesian updating and online statistical utilities for MoonBit.
 The library is immutable at its public boundaries, dependency-light, and usable
 from native, WebAssembly, and JavaScript-targeted MoonBit programs.
 
 ## Core capabilities
 
-- Conjugate models: Beta-Binomial, Gamma-Poisson, Normal-Normal,
-  Normal-Inverse-Gamma, Beta-Negative-Binomial, and Dirichlet-Multinomial.
-- Online inference: mergeable Welford statistics, rolling windows, update
-  ledgers, EWMA/CUSUM drift detection, and deterministic replay.
-- Predictive analytics: posterior summaries, predictive distributions,
-  credible intervals, calibration, Brier score, log loss, MAE, and RMSE.
+- Conjugate and structured inference: Beta-Binomial, Gamma-Poisson,
+  Normal-Normal, Normal-Inverse-Gamma, Dirichlet-Multinomial, discrete factors,
+  Bayesian networks, Kalman filters, and local-level forecasts.
+- Streaming and distributed statistics: mergeable Welford and covariance
+  summaries, weighted rates, quantile/distinct sketches, rolling windows,
+  EWMA/CUSUM drift detection, and deterministic replay.
 - Applied modeling: Bayesian linear/ridge regression, Gaussian and categorical
-  Naive Bayes, Beta-bandit policies, and walk-forward validation.
-- Numerical building blocks: dense matrices, Cholesky factorization, vector
-  operations, covariance matrices, deterministic resampling, and datasets.
-- Feature engineering: normalization, standardization, clipping, imputation,
-  one-hot encoding, polynomial features, interactions, and feature ranking.
+  Naive Bayes, bandit policies, survival analysis, state-space models, and
+  Monte Carlo/importance/MCMC diagnostics.
+- Production analytics: probability calibration, threshold and cost policies,
+  cohort/fairness reports, robust statistics, risk scorecards, experiment
+  guardrails, numerical optimization, and reproducible numerical methods.
+- Data and operations: data contracts and lineage, feature stores, model
+  registries, pipeline plans, prediction audit logs, rollout counters, service
+  health/SLO checks, and privacy-preserving summaries.
 
 ## Quick start
 
 Add the package to a MoonBit module:
 
 ```text
-moon add tyytyy68/moon-bayes-kit@0.1.5
+moon add tyytyy68/moon-bayes-kit@0.1.8
 ```
 
 Update a Beta-Binomial posterior:
@@ -53,11 +58,14 @@ test {
 ## Library architecture
 
 The root package exposes model types and small numerical primitives. Model
-updates are immutable and return new posterior values. `UpdateLedger` provides
-heterogeneous event replay; `OnlineStats`, `RollingWindow`, and the drift
-detectors handle streaming summaries; `DenseMatrix` and regression types cover
-small numerical models; dataset and feature-pipeline types connect tabular data
-to those models. Derived JSON implementations support checkpointing.
+updates are immutable and return new posterior values. The inference layer is
+organized around conjugate distributions, factor graphs, and state-space
+updates; the analytics layer adds calibration, cohort, causal, survival, and
+experiment reports; the operations layer provides contracts, lineage,
+feature/model registries, serving guards, and monitoring records. Numerical
+optimization, interpolation, integration, and robust estimators are shared by
+the modeling and production layers. Derived JSON implementations support
+checkpointing and portable reports.
 
 The implementation intentionally avoids a mandatory random-number or plotting
 dependency. `DeterministicRng` is provided for reproducible examples,
@@ -96,9 +104,11 @@ moon info
 ```
 
 The test suite covers model updates, serialization, predictive calculations,
-boundary validation, online statistics, matrices, regression, classifiers,
-feature transforms, and resampling. The repository's runnable examples are
-checked as MoonBit documentation tests.
+boundary validation, online and distributed statistics, factor inference,
+state-space filtering, Monte Carlo diagnostics, calibration, numerical
+solvers, optimization, lineage, serving controls, risk scoring, cohort
+analysis, and experiment gates. The repository's runnable examples are checked
+as MoonBit documentation tests.
 
 ## Continuous integration
 
